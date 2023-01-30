@@ -1,4 +1,4 @@
-import { useState } from 'react'
+
 import NuevoRegistro from './paginas/nuevoRegistro'
 import Login from './paginas/Login'
 import{BrowserRouter,Routes,Route}from 'react-router-dom'

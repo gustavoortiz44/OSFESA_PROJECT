@@ -29,8 +29,18 @@ const sweetAlertLogin=()=>{
       timer: 1500
     })
   }
+  const sweetAlertcatch=()=>{
+    swal.fire({  
+      position: 'center',
+      icon: 'error',
+      title: 'No se realizo el registro',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
   export {  
     sweetAlert,
     sweetAlertError,
-    sweetAlertLogin
+    sweetAlertLogin,
+    sweetAlertcatch
   }
