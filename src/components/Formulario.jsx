@@ -31,7 +31,7 @@ const Formulario = () => {
           level:levelUser,
           estatus:estatusUser,
         }),
-        mode: "no-cors",
+ 
       }).then((response) => {
         if (response.status == true) {
            response.json();
