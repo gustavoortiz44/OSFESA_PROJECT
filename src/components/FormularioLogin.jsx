@@ -34,7 +34,7 @@ const FormularioLogin = () => {
         if (response.status ==true) {
       
           
-          navigate('/')
+          navigate('/Generales')
           
         }else {
             sweetAlertLogin()

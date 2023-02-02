@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import  {useParams}  from "react-router-dom";
 import {
   sweetAlertcatch,
   sweetAlertError,
@@ -8,8 +9,9 @@ import {
 } from "../../sweetalert2/Alerta";
 
 const FormularioGenerales = () => {
+  
   const [usuario, setUsuario] = useState({
-    idProspecto:'',
+    idProspecto:'14443',
     idVendedor:'',
     nombre:'',
     apellidoPaterno:'',
@@ -40,13 +42,14 @@ const FormularioGenerales = () => {
 
     })
   }
-  
+  const params=useParams()
+ 
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (Object.keys(usuario).includes("")) {
+    /*if (Object.keys(usuario).includes("")) {
      return  sweetAlertError();
-    }
+    }*/
 
     fetch(`${import.meta.env.VITE_BACKEND_URL}/crearGenerales.php`,{
       method:"POST",
@@ -83,9 +86,14 @@ const FormularioGenerales = () => {
         if (response.status == true) {
            response.json();
          
-           
+        
         }
         sweetAlert();
+        
+        navigate(`/Apartado/${usuario.idVendedor}`)
+        console.log(params)
+    console.log(params)
+
       
       })
       .catch(()=>{
@@ -139,7 +147,8 @@ const FormularioGenerales = () => {
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
             value={usuario.nombre}
             onChange={handleChange}
-            
+          
+                        
           />
          
         </div>
@@ -213,6 +222,8 @@ const FormularioGenerales = () => {
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
             value={usuario.edad}
             onChange={handleChange}
+            min="0"
+            
           
           />
         </div>
