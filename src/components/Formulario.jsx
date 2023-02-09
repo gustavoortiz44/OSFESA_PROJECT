@@ -1,18 +1,18 @@
 import { useState } from "react";
 import { sweetAlert, sweetAlertError,sweetAlertcatch } from "../../sweetalert2/Alerta";
+import { useNavigate } from "react-router-dom";
 
 const Formulario = () => {
   const [usuarioId, setUserId] = useState("");
   const [nombreUsuario, setNombre] = useState("");
   const [passwordUser, setPassword] = useState("");
   const [levelUser, setLeveL] = useState("");
-  const [estatusUser, setEstatus] = useState("");
+  const navigate=useNavigate()
+  
   const handleSubmit =  (e) => {
     e.preventDefault();
     if (
-      [usuarioId, nombreUsuario, passwordUser, levelUser, estatusUser].includes(
-        ""
-      )
+      [usuarioId, nombreUsuario, passwordUser, levelUser].includes("")
     ) {
       return sweetAlertError();
     }
@@ -29,7 +29,7 @@ const Formulario = () => {
           password:passwordUser,
           nombre:nombreUsuario,
           level:levelUser,
-          estatus:estatusUser,
+          
         }),
  
       }).then((response) => {
@@ -39,6 +39,7 @@ const Formulario = () => {
            
         }
         sweetAlert();
+        navigate('/Login')
       
       })
       .catch(()=>{
@@ -47,7 +48,6 @@ const Formulario = () => {
       setUserId("");
       setNombre("");
       setLeveL("");
-      setEstatus("");
       setPassword("");
     
   };
@@ -63,14 +63,14 @@ const Formulario = () => {
             htmlFor="userId"
             className="text-gray-700 uppercase font-bold text-center"
           >
-            UsuarioId:
+            Id_Usuario:
           </label>
           <input
             type="text"
-            placeholder="Ingrese UsuarioId Correctamente"
+            placeholder="Ingrese Usuario_Id Correcto"
             id="userId"
             name="usuarioId"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={usuarioId}
             onChange={(e) => setUserId(e.target.value)}
           />
@@ -85,10 +85,10 @@ const Formulario = () => {
           </label>
           <input
             type="text"
-            placeholder="Ingrese Nombre  de Usuario Correctamente"
+            placeholder="Ingrese Nombre  de Usuario Correcto"
             id="nombre"
             name="nombreUsuario"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={nombreUsuario}
             onChange={(e) => setNombre(e.target.value)}
           />
@@ -102,31 +102,16 @@ const Formulario = () => {
           </label>
           <input
             type="text"
-            placeholder="Ingrese Nivel"
+            placeholder="Ingrese Nivel Correcto"
             id="level"
             name="levelUser"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={levelUser}
             onChange={(e) => setLeveL(e.target.value)}
           />
         </div>
-        <div className="mb-3 p-3">
-          <label
-            htmlFor="status"
-            className="text-gray-700 uppercase font-bold text-center"
-          >
-            Status:
-          </label>
-          <input
-            type="text"
-            placeholder="Ingrese Status"
-            id="status"
-            name="estatusUser"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
-            value={estatusUser}
-            onChange={(e) => setEstatus(e.target.value)}
-          />
-        </div>
+       
+        
         <div className="mb-3 p-3">
           <label
             htmlFor="password"
@@ -136,10 +121,10 @@ const Formulario = () => {
           </label>
           <input
             type="password"
-            placeholder="Ingrese Password Correctamente"
+            placeholder="Ingrese Password Correcto"
             id="password"
             name="passwordUser"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={passwordUser}
             onChange={(e) => setPassword(e.target.value)}
           />

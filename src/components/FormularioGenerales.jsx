@@ -1,15 +1,18 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import  {useParams}  from "react-router-dom";
+import { useState,useEffect } from "react";
+
 import {
   sweetAlertcatch,
   sweetAlertError,
 
-  sweetAlert
+  sweetAlert,
+ 
 } from "../../sweetalert2/Alerta";
 
 const FormularioGenerales = () => {
-  
+ 
+
+
   const [usuario, setUsuario] = useState({
     idProspecto:'',
     idVendedor:'',
@@ -30,7 +33,7 @@ const FormularioGenerales = () => {
     estado:'',
     municipio:'',
     beneficiario:'',
-    estatus:''
+  
 
 
 
@@ -42,7 +45,6 @@ const FormularioGenerales = () => {
 
     })
   }
-
  
   const navigate = useNavigate();
   const handleSubmit = (e) => {
@@ -77,7 +79,7 @@ const FormularioGenerales = () => {
         estado:usuario.estado,
         municipio:usuario.municipio,
         beneficiario:usuario.beneficiario,
-        estatus:usuario.estatus
+        
       }),
      
       
@@ -90,11 +92,8 @@ const FormularioGenerales = () => {
         }
         sweetAlert();
         
-        
         navigate(`/Apartado/${usuario.idProspecto}`)
-        console.log(params)
-    console.log(params)
-
+        
       
       })
       .catch(()=>{
@@ -121,10 +120,10 @@ const FormularioGenerales = () => {
           </label>
           <input
             type="text"
-            placeholder="Ingrese Id Vendedor Correctamente"
+            placeholder="Ingrese Id Vendedor Correcto"
             id="idVendedor"
             name="idVendedor"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={usuario.idVendedor}
             onChange={handleChange}
           />
@@ -142,10 +141,10 @@ const FormularioGenerales = () => {
           </label>
           <input
             type="text"
-            placeholder="Ingrese Nombre Correctamente"
+            placeholder="Ingrese Nombre Correcto"
             id="nombre"
             name="nombre"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={usuario.nombre}
             onChange={handleChange}
           
@@ -162,10 +161,10 @@ const FormularioGenerales = () => {
           </label>
           <input
             type="text"
-            placeholder="Ingrese Apellido Paterno Correctamente"
+            placeholder="Ingrese Apellido Paterno Correcto"
             id="apellidoPaterno"
             name="apellidoPaterno"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={usuario.apellidoPaterno}
             onChange={handleChange}
           />
@@ -180,10 +179,10 @@ const FormularioGenerales = () => {
           </label>
           <input
             type="text"
-            placeholder="Ingrese Apellido Materno Correctamente"
+            placeholder="Ingrese Apellido Materno Correcto"
             id="apellidoMaterno"
             name="apellidoMaterno"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={usuario.apellidoMaterno}
             onChange={handleChange}
           />
@@ -203,7 +202,7 @@ const FormularioGenerales = () => {
             placeholder="Ingrese Nacionalidad Correctamente"
             id="nacionalidad"
             name="nacionalidad"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={usuario.nacionalidad}
             onChange={handleChange}
           />
@@ -217,10 +216,10 @@ const FormularioGenerales = () => {
           </label>
           <input
             type="number"
-            placeholder="Ingrese la Edad Correctamente"
+            placeholder="Ingrese la Edad Correcta"
             id="edad"
             name="edad"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={usuario.edad}
             onChange={handleChange}
             min="0"
@@ -237,10 +236,10 @@ const FormularioGenerales = () => {
           </label>
           <input
             type="text"
-            placeholder="Ingrese Estado Civil Correctamente"
+            placeholder="Ingrese Estado Civil Correcto"
             id="estadoCivil"
             name="estadoCivil"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={usuario.estadoCivil}
             onChange={handleChange}
           />
@@ -256,10 +255,10 @@ const FormularioGenerales = () => {
           </label>
           <input
             type="text"
-            placeholder="Ingrese Grado de Estudios Correctamente"
+            placeholder="Ingrese Grado de Estudios Correcto"
             id="gradoEstudios"
             name="gradoEstudios"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={usuario.gradoEstudios}
             onChange={handleChange}
           />
@@ -273,10 +272,10 @@ const FormularioGenerales = () => {
           </label>
           <input
             type="text"
-            placeholder="Ingrese Ocupacion Correctamente"
+            placeholder="Ingrese Ocupacion Correcta"
             id="ocupacion"
             name="ocupacion"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={usuario.ocupacion}
             onChange={handleChange}
           />
@@ -289,11 +288,11 @@ const FormularioGenerales = () => {
             Telefono Casa:
           </label>
           <input
-            type="number"
-            placeholder="Ingrese Telefono Celular Correctamente"
+            type="text"
+            placeholder="Ingrese Telefono Casa Correcto"
             id="telefonoCasa"
             name="telefonoCasa"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={usuario.telefonoCasa}
             onChange={handleChange}
           />
@@ -306,11 +305,11 @@ const FormularioGenerales = () => {
             Telefono Celular:
           </label>
           <input
-            type="number"
-            placeholder="Ingrese Telefono Celular Correctamente"
+            type="text"
+            placeholder="Ingrese Telefono Celular Correcto"
             id="telefonoCel"
             name="telefonoCel"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={usuario.telefonoCel}
             onChange={handleChange}
           />
@@ -327,10 +326,10 @@ const FormularioGenerales = () => {
           </label>
           <input
             type="text"
-            placeholder="Ingrese Calle Correctamente"
+            placeholder="Ingrese Calle Correcta"
             id="calle"
             name="calle"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={usuario.calle}
             onChange={handleChange}
           />
@@ -345,10 +344,10 @@ const FormularioGenerales = () => {
           </label>
           <input
             type="text"
-            placeholder="Ingrese Numero Interior Correctamente"
+            placeholder="Ingrese Numero Interior Correcto"
             id="numeroInt"
             name="numeroInt"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={usuario.numeroInt}
             onChange={handleChange}
           />
@@ -362,10 +361,10 @@ const FormularioGenerales = () => {
           </label>
           <input
             type="text"
-            placeholder="Ingrese Numero Exterior  Correctamente"
+            placeholder="Ingrese Numero Exterior Correcto"
             id="numeroExt"
             name="numeroExt"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={usuario.numeroExt}
             onChange={handleChange}
           />
@@ -379,10 +378,10 @@ const FormularioGenerales = () => {
           </label>
           <input
             type="text"
-            placeholder="Ingrese Colonia Correctamente"
+            placeholder="Ingrese Colonia Correcta"
             id="colonia"
             name="colonia"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={usuario.colonia}
             onChange={handleChange}
           />
@@ -400,10 +399,10 @@ const FormularioGenerales = () => {
           </label>
           <input
             type="text"
-            placeholder="Ingrese Estado Correctamente"
+            placeholder="Ingrese Estado Correcto"
             id="estado"
             name="estado"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={usuario.estado}
             onChange={handleChange}
           />
@@ -417,10 +416,10 @@ const FormularioGenerales = () => {
           </label>
           <input
             type="text"
-            placeholder="Ingrese Beneficiario Correctamente"
+            placeholder="Ingrese Municipio Correcto"
             id="municipio"
             name="municipio"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={usuario.municipio}
             onChange={handleChange}
           />
@@ -435,31 +434,15 @@ const FormularioGenerales = () => {
           </label>
           <input
             type="text"
-            placeholder="Ingrese Beneficiario Correctamente"
+            placeholder="Ingrese Beneficiario Correcto"
             id="beneficiario"
             name="beneficiario"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={usuario.beneficiario}
             onChange={handleChange}
           />
         </div>
-        <div className="mb-3 p-3 float-left">
-          <label
-            htmlFor="estatus"
-            className="text-gray-700 uppercase font-bold text-center"
-          >
-            Estatus:
-          </label>
-          <input
-            type="estatus"
-            placeholder="Ingrese Estatus Correctamente"
-            id="estatus"
-            name="estatus"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
-            value={usuario.estatus}
-            onChange={handleChange}
-          />
-        </div>
+        
 
         </div>
        

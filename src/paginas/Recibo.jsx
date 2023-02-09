@@ -1,11 +1,10 @@
+import FormularioRecibo from "../components/FormularioRecibo";
 import { sweetAlertSesion } from "../../sweetalert2/Alerta";
-import FormularioApartado from "../components/FormularioApartado";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 import OSFESA from "../IMG/OSFESA.png";
 
-const Apartado = () => {
+const Recibo = () => {
   const navigate=useNavigate()
   useEffect(() => {
     const sesion = () => {
@@ -32,13 +31,13 @@ const Apartado = () => {
       </div>
 
       <h1 className="text-center font-medium text-3xl font-serif mt-0 p-0 uppercase">
-        Apartado
+        Recibo Pago:
       </h1>
 
       <div className="flex justify-center">
-        <FormularioApartado />
+        <FormularioRecibo />
       </div>
     </>
   );
 };
-export default Apartado;
+export default Recibo;

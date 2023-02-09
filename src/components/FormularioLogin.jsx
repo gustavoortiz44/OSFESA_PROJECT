@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import {
   sweetAlertcatch,
   sweetAlertError,
@@ -10,6 +10,8 @@ const FormularioLogin = () => {
   const [usuarioId, setUserId] = useState("");
   const [passwordUser, setPassword] = useState("");
   const navigate = useNavigate();
+ 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if ([usuarioId, passwordUser].includes("")) {
@@ -33,7 +35,7 @@ const FormularioLogin = () => {
       .then((response) => {
         if (response.status ==true) {
       
-          
+          localStorage.setItem("usuarioId",(usuarioId))
           navigate('/Generales')
           
         }else {
@@ -55,16 +57,17 @@ const FormularioLogin = () => {
             htmlFor="userId"
             className="text-gray-700 uppercase font-bold text-center"
           >
-            UsuarioId:
+            Id_Usuario:
           </label>
           <input
             type="text"
-            placeholder="Ingrese UsuarioId Correctamente"
+            placeholder="Ingrese Id_Usuario Correcto"
             id="userId"
             name="usuarioId"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={usuarioId}
             onChange={(e) => setUserId(e.target.value)}
+            
           />
         </div>
         <div className="mb-3 p-3">
@@ -76,12 +79,13 @@ const FormularioLogin = () => {
           </label>
           <input
             type="password"
-            placeholder="Ingrese Nombre  de Usuario Correctamente"
+            placeholder="Ingrese Password Correcto"
             id="password"
             name="password"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={passwordUser}
             onChange={(e) => setPassword(e.target.value)}
+           
           />
         </div>
 

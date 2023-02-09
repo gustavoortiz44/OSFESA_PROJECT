@@ -38,9 +38,22 @@ const sweetAlertLogin=()=>{
       timer: 1500
     })
   }
+  const sweetAlertSesion=()=>{ 
+ 
+    swal.fire({
+      title: 'Tu Sesion Expiro',
+      text: "Inicia Sesion Nuevamente",
+      icon: 'warning',
+
+      
+    } )
+ }
+  
   export {  
     sweetAlert,
     sweetAlertError,
     sweetAlertLogin,
-    sweetAlertcatch
+    sweetAlertcatch,
+    sweetAlertSesion
+  
   }
