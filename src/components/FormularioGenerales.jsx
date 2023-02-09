@@ -4,14 +4,14 @@ import  {useParams}  from "react-router-dom";
 import {
   sweetAlertcatch,
   sweetAlertError,
-  sweetAlertLogin,
+
   sweetAlert
 } from "../../sweetalert2/Alerta";
 
 const FormularioGenerales = () => {
   
   const [usuario, setUsuario] = useState({
-    idProspecto:'14443',
+    idProspecto:'',
     idVendedor:'',
     nombre:'',
     apellidoPaterno:'',
@@ -21,7 +21,7 @@ const FormularioGenerales = () => {
     estadoCivil:'',
     gradoEstudios:'',
     ocupacion:'',
-
+    telefonoCel:'',
     telefonoCasa:'',
     calle:'',
     numeroInt:'',
@@ -42,14 +42,14 @@ const FormularioGenerales = () => {
 
     })
   }
-  const params=useParams()
+
  
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    /*if (Object.keys(usuario).includes("")) {
+    if (Object.values(usuario).includes("")) {
      return  sweetAlertError();
-    }*/
+    }
 
     fetch(`${import.meta.env.VITE_BACKEND_URL}/crearGenerales.php`,{
       method:"POST",
@@ -68,7 +68,7 @@ const FormularioGenerales = () => {
         estadoCivil:usuario.estadoCivil,
         gradoEstudios:usuario.gradoEstudios,
         ocupacion:usuario.ocupacion,
-      
+        telefonoCel:usuario.telefonoCel,
         telefonoCasa:usuario.telefonoCasa,
         calle:usuario.calle,
         numeroInt:usuario.numeroInt,
@@ -85,12 +85,13 @@ const FormularioGenerales = () => {
     }).then((response) => {
         if (response.status == true) {
            response.json();
-         
+          
         
         }
         sweetAlert();
         
-        navigate(`/Apartado/${usuario.idVendedor}`)
+        
+        navigate(`/Apartado/${usuario.idProspecto}`)
         console.log(params)
     console.log(params)
 
@@ -294,6 +295,23 @@ const FormularioGenerales = () => {
             name="telefonoCasa"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
             value={usuario.telefonoCasa}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="mb-3 p-3  float-left">
+          <label
+            htmlFor="telefonoCel"
+            className="text-gray-700 uppercase font-bold text-center"
+          >
+            Telefono Celular:
+          </label>
+          <input
+            type="number"
+            placeholder="Ingrese Telefono Celular Correctamente"
+            id="telefonoCel"
+            name="telefonoCel"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            value={usuario.telefonoCel}
             onChange={handleChange}
           />
         </div>

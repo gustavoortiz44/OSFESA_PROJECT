@@ -15,7 +15,7 @@ function App() {
       <Route index='/' element={<NuevoRegistro/>}/>
       <Route path='/Login' element={<Login/>}/>
       <Route path='/Generales' element={<Generales/>}/>
-      <Route path='/Apartado/:id'element={<Apartado/>}/>
+      <Route path='/Apartado/:id_prospecto'element={<Apartado/>}/>
     </Routes>
     </BrowserRouter>
 
