@@ -32,13 +32,32 @@ const FormularioLogin = () => {
     })
       
     .then(responseJson=>responseJson.json())
+    
       .then((response) => {
-        if (response.status ==true) {
+        if (response.captura==true) {
+         
       
           localStorage.setItem("usuarioId",(usuarioId))
-          navigate('/Generales')
+      
+         navigate('/Generales')
           
-        }else {
+        }else if(response.admin==true){
+          
+          localStorage.setItem("usuarioId",(usuarioId))
+         navigate('/Generales')
+
+        }else if(response.ventas==true){
+          
+          localStorage.setItem("usuarioId",(usuarioId))
+         navigate('/Generales')
+
+        }else if(response.direccion==true){
+          
+          localStorage.setItem("usuarioId",(usuarioId))
+         navigate('/Generales')
+
+        }
+         else {
             sweetAlertLogin()
         }   
       }).catch((error) => {

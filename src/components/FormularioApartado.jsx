@@ -10,13 +10,14 @@ import {
 
 
 
+
 const FormularioApartado = () => {
   const {id_prospecto}=useParams()
 
   const  [idProspecto,setIdProspecto]=useState(id_prospecto)
   const  [idProyecto, setIdProyecto]=useState('')
   const  [importe, setImporte]=useState('')
- 
+  const  [estatus, setEstatus]=useState('APARTADO')
   const [idLoteSFernando, setIdLoteSFernando] = useState('');
   const [idLoteSFrancisco, setIdLoteSFrancisco] = useState('');
   const [idLoteSJ, setIdLoteSJ] = useState('');
@@ -24,6 +25,7 @@ const FormularioApartado = () => {
   const [idLoteSanFancisco, setidLoteSanFrancisco]=useState([])
   const [idLoteSJose, setidLoteSJose]=useState([])
   
+ 
 
   useEffect(() => {
     const consultarApi = async () => {
@@ -42,41 +44,7 @@ const FormularioApartado = () => {
     };
     consultarApi();
   }, []);
-  useEffect(() => {
-    const consultarApi = async () => {
-
-      const url = `${import.meta.env.VITE_BACKEND_URL}/obtenerIdLote.php`;
-
-      const respuesta = await fetch(url);
-      const relustado= await respuesta.json()
-     
-
-      setidLoteSanFrancisco(relustado);
-     
-
-
-  
-    };
-    consultarApi();
-  }, []);
-  useEffect(() => {
-    const consultarApi = async () => {
-
-      const url = `${import.meta.env.VITE_BACKEND_URL}/obtenerIdLote.php`;
-
-      const respuesta = await fetch(url);
-      const relustado= await respuesta.json()
-     
-
-      setidLoteSJose(relustado);
-     
-
-
-  
-    };
-    consultarApi();
-  }, []);
-
+ 
     const handleSubmit = (e) => {
       e.preventDefault();
       if ([idProyecto,importe].includes('')) {
@@ -94,6 +62,7 @@ const FormularioApartado = () => {
          idProyecto:idProyecto,
          idLote:idLoteSFernando,
          importe:importe,
+         estatus:estatus
         
         }),
        
@@ -233,6 +202,25 @@ const FormularioApartado = () => {
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
             value={importe}
             onChange={e=>setImporte(e.target.value)}
+     
+          />
+          </div>
+         
+          <div className="mb-3 p-3">
+          <label
+            htmlFor="importw"
+            className="text-gray-700 uppercase font-bold text-center"
+          >
+            ESTATUS:
+          </label>
+          <input
+            type="text"
+            placeholder="Ingrese Importe Correcto"
+            id="importe"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            value={estatus}
+            onChange={e=>setEstatus(e.target.value)}
+      
      
           />
           </div>

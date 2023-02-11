@@ -100,15 +100,15 @@ const Formulario = () => {
           >
             Nivel:
           </label>
-          <input
-            type="text"
-            placeholder="Ingrese Nivel Correcto"
-            id="level"
-            name="levelUser"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-            value={levelUser}
-            onChange={(e) => setLeveL(e.target.value)}
-          />
+          <select value={levelUser} onChange={e=>setLeveL(e.target.value)} className='uppercase font-bolt
+          shadow-md rounded-md'>
+            <option value=''>--Selecciona el Nivel Correcto--</option>
+            <option>DIRECCION</option>
+            <option>ADMINISTRADOR</option>
+            <option>VENTAS</option>
+            <option>CAPTURA</option>
+          </select>
+         
         </div>
        
         

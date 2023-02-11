@@ -6,6 +6,7 @@ import Apartado from './paginas/Apartado'
 import Recibo from './paginas/Recibo'
 
 import{BrowserRouter,Routes,Route}from 'react-router-dom'
+import GenerarApartado from './paginas/GenerarApartado'
 
 function App() {
   
@@ -19,6 +20,7 @@ function App() {
       <Route path='/generales' element={<Generales/>}/>
       <Route path='/apartado/:id_prospecto'element={<Apartado/>}/>
       <Route path='/recibo'element={<Recibo/>}/>
+      <Route path='/generar_apartado'element={<GenerarApartado/>}/>
     </Routes>
     </BrowserRouter>
 

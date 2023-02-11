@@ -14,7 +14,7 @@ const FormularioGenerales = () => {
 
 
   const [usuario, setUsuario] = useState({
-    idProspecto:'',
+    idProspecto:'12',
     idVendedor:'',
     nombre:'',
     apellidoPaterno:'',
@@ -33,6 +33,7 @@ const FormularioGenerales = () => {
     estado:'',
     municipio:'',
     beneficiario:'',
+    estatus:''
   
 
 
@@ -49,9 +50,9 @@ const FormularioGenerales = () => {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (Object.values(usuario).includes("")) {
+   /* if (Object.values(usuario).includes("")) {
      return  sweetAlertError();
-    }
+    }*/
 
     fetch(`${import.meta.env.VITE_BACKEND_URL}/crearGenerales.php`,{
       method:"POST",
@@ -71,7 +72,7 @@ const FormularioGenerales = () => {
         gradoEstudios:usuario.gradoEstudios,
         ocupacion:usuario.ocupacion,
         telefonoCel:usuario.telefonoCel,
-        telefonoCasa:usuario.telefonoCasa,
+        //telefonoCasa:usuario.telefonoCasa,
         calle:usuario.calle,
         numeroInt:usuario.numeroInt,
         numeroExt:usuario.numeroExt,
@@ -79,6 +80,7 @@ const FormularioGenerales = () => {
         estado:usuario.estado,
         municipio:usuario.municipio,
         beneficiario:usuario.beneficiario,
+        estatus:usuario.estatus
         
       }),
      
@@ -89,10 +91,14 @@ const FormularioGenerales = () => {
            response.json();
           
         
+        }else if( usuario.estatus=='APARTADO'){
+          
+          navigate(`/Apartado/${usuario.idProspecto}`)
         }
         sweetAlert();
+        setUsuario('')
         
-        navigate(`/Apartado/${usuario.idProspecto}`)
+       
         
       
       })
@@ -106,12 +112,12 @@ const FormularioGenerales = () => {
   return (
     <>
       <form
-        className="bg-white py-6 px-5 md:w-2/2  rounded-lg shadow-lg mt-0 shadow-zinc-300"
+        className="bg-white py-6 px-5 md:w-2/2 rounded-lg shadow-lg mt-0 shadow-zinc-300"
         onSubmit={handleSubmit}
       >
         <div>
      
-        <div className=" p-3 mb-3 float-left">
+        <div className=" p-3 mb-3 ">
           <label
             htmlFor="idVendedor"
             className="text-gray-700 uppercase font-bold text-center"
@@ -132,6 +138,7 @@ const FormularioGenerales = () => {
 
         </div>
         <div>
+          <h3 className="text-center font-normal text-xl font-serif mt-0 p-3 uppercase">Ingrese los Datos del Cliente Prospecto:</h3>
         <div className=" p-3 mb-3 float-left">
           <label
             htmlFor="nombre"
@@ -280,29 +287,13 @@ const FormularioGenerales = () => {
             onChange={handleChange}
           />
         </div>
-        <div className="mb-3 p-3  float-left">
-          <label
-            htmlFor="telefonoCasa"
-            className="text-gray-700 uppercase font-bold text-center"
-          >
-            Telefono Casa:
-          </label>
-          <input
-            type="text"
-            placeholder="Ingrese Telefono Casa Correcto"
-            id="telefonoCasa"
-            name="telefonoCasa"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-            value={usuario.telefonoCasa}
-            onChange={handleChange}
-          />
-        </div>
+       
         <div className="mb-3 p-3  float-left">
           <label
             htmlFor="telefonoCel"
             className="text-gray-700 uppercase font-bold text-center"
           >
-            Telefono Celular:
+            Telefono:
           </label>
           <input
             type="text"
@@ -442,8 +433,20 @@ const FormularioGenerales = () => {
             onChange={handleChange}
           />
         </div>
-        
-
+        <div className="mb-3 p-3 float-left">
+          <label
+           htmlFor="estatus"
+           className="text-gray-700 uppercase font-bold text-center"
+          >Estatus:</label>
+          <select  onChange={handleChange} value={usuario.estatus}id="estatus"name="estatus"
+          className='uppercase font-bolt
+          shadow-md rounded-md'>
+            <option value=''>--Seleccione Estatus--</option>
+            <option >APARTADO</option>
+            <option >PROSPECTO</option>
+          </select>
+        </div>
+       
         </div>
        
         <input
