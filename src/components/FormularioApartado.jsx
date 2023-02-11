@@ -188,7 +188,7 @@ const FormularioApartado = () => {
             
           </select>
           </div>
-          <div className="mb-3 p-3">
+          <div className="mb-2 p-2">
           <label
             htmlFor="importw"
             className="text-gray-700 uppercase font-bold text-center"
@@ -199,14 +199,14 @@ const FormularioApartado = () => {
             type="text"
             placeholder="Ingrese Importe Correcto"
             id="importe"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-0 placeholder-gray-500 rounded-md"
             value={importe}
             onChange={e=>setImporte(e.target.value)}
      
           />
           </div>
          
-          <div className="mb-3 p-3">
+          <div className="mb-2 p-2">
           <label
             htmlFor="importw"
             className="text-gray-700 uppercase font-bold text-center"
@@ -217,7 +217,7 @@ const FormularioApartado = () => {
             type="text"
             placeholder="Ingrese Importe Correcto"
             id="importe"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-0 placeholder-gray-500 rounded-md"
             value={estatus}
             onChange={e=>setEstatus(e.target.value)}
       

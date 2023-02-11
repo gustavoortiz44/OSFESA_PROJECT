@@ -28,7 +28,7 @@ const Apartado = () => {
   return (
     <>
       <div className="object-left-top">
-        <img src={OSFESA} className="w-25 h-28 " />
+        <img src={OSFESA} className="w-25 h-14 " />
       </div>
 
       <h1 className="text-center font-medium text-3xl font-serif mt-0 p-0 uppercase">

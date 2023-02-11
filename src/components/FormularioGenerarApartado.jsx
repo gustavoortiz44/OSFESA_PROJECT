@@ -1,69 +1,57 @@
 
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const FormularioGenerarApartado = () => {
   const navigate=useNavigate()
- 
+  const [usuarioProspecto, setUsuarioProspecto] = useState({
+    nombre: "",
+    apellidoPaterno: "",
+    apellidoMaterno: "",
 
-    const [usuarioProspecto, setUsuarioProspecto] = useState({
-      nombre:'',
-      apellidoPaterno:'',
-      apellidoMaterno:''
+  });
+  const [usuario, setUsuario] = useState({});
+ // const { idProspecto,setIdProspecto } =useState();
 
-    });
-    const [idUsuario, setIdUsuario]=useState()
-  
-   
-    
-    
-  const handleSubmit=(e)=>{
-    e.preventDefault()
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/generarApartado.php`,{
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/generarApartado.php`, {
       method:"POST",
-      headers:{
-        "Accept":"application/json",
+      headers: {
+       "Accept":"application/json",
         "Content-type":"application/json",
       },
       body:JSON.stringify({
-        nombre:usuarioProspecto.nombre,
-        apellidoPaterno:usuarioProspecto.apellidoPaterno,
-        apellidoMaterno:usuarioProspecto.apellidoMaterno
-      })
-      
-    }).then((response) => {
-      if (response.status == true) {
-        response.json();
+        nombre: usuarioProspecto.nombre,
+        apellidoPaterno: usuarioProspecto.apellidoPaterno,
+        apellidoMaterno: usuarioProspecto.apellidoMaterno,
        
-        setIdUsuario(response.estatus)
-      
-      }
-      navigate(`/apartado/${response.id_prospecto}`)
-      
-      
-    
-    
-      
-  
-    
+      })
     })
-       
-     .catch((error) => {
-        console.log(error);
-      })
-  }
-  const handleChange=e=>{
+    .then(responseJson=>responseJson.json())
+   
+    .then((response)=>{
+     setUsuario(response)
+   
+     
+     })
+     navigate(`/apartado/${usuario.id_prospecto}`)
+    
+   
+    
+  };
+  const handleChange = (e) => {
     setUsuarioProspecto({
       ...usuarioProspecto,
-      [e.target.name]:e.target.value
+      [e.target.name]: e.target.value,
+    });
+  };
 
-    })
-  }
   return (
-   <>
-       <form
+    <>
+      <form
         className="bg-white py-6 px-5 md:w-1/2 rounded-lg shadow-lg mt-0  shadow-zinc-300"
-      onSubmit={handleSubmit}
+        onSubmit={handleSubmit}
       >
         <div className="mb-3 p-3">
           <label
@@ -80,7 +68,6 @@ const FormularioGenerarApartado = () => {
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={usuarioProspecto.nombre}
             onChange={handleChange}
-            
           />
         </div>
         <div className="mb-3 p-3">
@@ -98,7 +85,6 @@ const FormularioGenerarApartado = () => {
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={usuarioProspecto.apellidoPaterno}
             onChange={handleChange}
-           
           />
         </div>
         <div className="mb-3 p-3">
@@ -116,18 +102,42 @@ const FormularioGenerarApartado = () => {
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={usuarioProspecto.apellidoMaterno}
             onChange={handleChange}
-           
           />
         </div>
-        <div className="mx-2 my-10 bg-white shadow-md px-5 py-10 rounded-xl">
-            <p className="font-bold mb-3 text-gray-700 uppercase">Id: {''}
-                <span className="font-normal normal-case">{idUsuario}</span>
-            </p>
-
-            <p className="font-bold mb-3 text-gray-700 uppercase">Estatus: {''}
-                <span className="font-normal normal-case">{idUsuario}</span>
-            </p>
-          </div>
+        <div className="mb-3 p-3">
+          <label
+            htmlFor="apellidoPaterno"
+            className="text-gray-700 uppercase font-bold text-center"
+          >
+            Id:
+          </label>
+          <input
+            type="text"
+            placeholder="Ingrese Apellido Materno Correcto"
+            id="apellidoMaterno"
+            name="apellidoMaterno"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
+            value={usuario.id_prospecto}
+          
+          />
+        </div>
+        <div className="mb-3 p-3">
+          <label
+            htmlFor="apellidoPaterno"
+            className="text-gray-700 uppercase font-bold text-center"
+          >
+            Estatus:
+          </label>
+          <input
+            type="text"
+            placeholder="Ingrese Apellido Materno Correcto"
+            id="apellidoMaterno"
+            name="apellidoMaterno"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
+            value={usuario.estatus}
+          
+          />
+        </div>
 
         <input
           type="submit"
@@ -137,7 +147,7 @@ const FormularioGenerarApartado = () => {
         />
       </form>
     </>
-  )
-}
+  );
+};
 
 export default FormularioGenerarApartado;
