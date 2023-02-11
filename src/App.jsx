@@ -8,7 +8,7 @@ import Recibo from './paginas/Recibo'
 import{BrowserRouter,Routes,Route}from 'react-router-dom'
 import GenerarApartado from './paginas/GenerarApartado'
 
-//Actualizado;
+//Actualizado
 
 function App() {
   
