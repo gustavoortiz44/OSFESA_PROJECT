@@ -75,7 +75,7 @@ const FormularioRecibo = () => {
             Fecha Recibo:
           </label>
           <input
-            type="text"
+            type="date"
             placeholder="Ingrese Fecha de Recibo Correcta"
             id="fechaRecibo"
             name="fechaRecibo"
@@ -92,7 +92,7 @@ const FormularioRecibo = () => {
             Fecha Final:
           </label>
           <input
-            type="text"
+            type="date"
             placeholder="Ingrese Fecha Final de Recibo Correcta"
             id="fechaFinal"
             name="fechaFinal"

@@ -1,11 +1,13 @@
-import OSFESA from "../IMG/OSFESA.png";
+
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
+
 import {
   sweetAlertcatch,
   sweetAlertError,
 
-  sweetAlert
+  sweetAlert,
+
 } from "../../sweetalert2/Alerta";
 
 
@@ -13,6 +15,7 @@ import {
 
 const FormularioApartado = () => {
   const {id_prospecto}=useParams()
+  const navigate=useNavigate()
 
   const  [idProspecto,setIdProspecto]=useState(id_prospecto)
   const  [idProyecto, setIdProyecto]=useState('')
@@ -71,10 +74,19 @@ const FormularioApartado = () => {
       }).then((response) => {
           if (response.status == true) {
              response.json();
-            
+             
           
           }
           sweetAlert();
+         setTimeout(() => {
+          const respuesta=confirm('Deseas Agregar Mas Apartados Este Mismo Usuario')
+          if(!respuesta){
+            navigate('/generales')
+          }
+      
+       
+         }, 15000);
+         
           
       
         

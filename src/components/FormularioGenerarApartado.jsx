@@ -32,10 +32,15 @@ const FormularioGenerarApartado = () => {
    
     .then((response)=>{
      setUsuario(response)
-   
-     
+    
+    
      })
      navigate(`/apartado/${usuario.id_prospecto}`)
+     console.log(usuario.id_prospecto)
+   
+     
+
+    
     
    
     

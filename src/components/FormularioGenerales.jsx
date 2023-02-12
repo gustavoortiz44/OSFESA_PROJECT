@@ -96,7 +96,7 @@ const FormularioGenerales = () => {
           navigate(`/Apartado/${usuario.idProspecto}`)
         }
         sweetAlert();
-        setUsuario('')
+       
         
        
         
