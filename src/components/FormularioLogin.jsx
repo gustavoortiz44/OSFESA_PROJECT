@@ -1,9 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useState,useEffect } from "react";
 import {
-  sweetAlertcatch,
-  sweetAlertError,
-  sweetAlertLogin,
+ sweetAlertError,
+
 } from "../../sweetalert2/Alerta";
 
 const FormularioLogin = () => {
@@ -39,27 +38,25 @@ const FormularioLogin = () => {
       
           localStorage.setItem("usuarioId",(usuarioId))
       
-         navigate('/Generales')
+         navigate('/menuCapturista')
           
         }else if(response.admin==true){
           
           localStorage.setItem("usuarioId",(usuarioId))
-         navigate('/Generales')
+         navigate('/menuAdministrador')
 
         }else if(response.ventas==true){
           
           localStorage.setItem("usuarioId",(usuarioId))
-         navigate('/Generales')
+         navigate('/menuVendedor')
 
         }else if(response.direccion==true){
           
           localStorage.setItem("usuarioId",(usuarioId))
-         navigate('/Generales')
+         navigate('/menuDireccion')
 
         }
-         else {
-            sweetAlertLogin()
-        }   
+           
       }).catch((error) => {
         console.log(error);
       });

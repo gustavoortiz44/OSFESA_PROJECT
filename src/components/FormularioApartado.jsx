@@ -15,9 +15,11 @@ import {
 
 const FormularioApartado = () => {
   const {id_prospecto}=useParams()
+ 
   const navigate=useNavigate()
 
   const  [idProspecto,setIdProspecto]=useState(id_prospecto)
+  const  [fechaApartado, setFechaApartado]=useState('')
   const  [idProyecto, setIdProyecto]=useState('')
   const  [importe, setImporte]=useState('')
   const  [estatus, setEstatus]=useState('APARTADO')
@@ -62,6 +64,7 @@ const FormularioApartado = () => {
         },
         body:JSON.stringify({
          idProspecto:idProspecto,
+         fecha:fechaApartado,
          idProyecto:idProyecto,
          idLote:idLoteSFernando,
          importe:importe,
@@ -115,15 +118,33 @@ const FormularioApartado = () => {
           </label>
           <input
             type="text"
-            placeholder="Ingrese Id Vendedor Correctamente"
+        
             id="idProspecto"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
             value={idProspecto}
             onChange={e=>setIdProspecto(e.target.value)}
+    
      
           />
-         
+          
+          <label
+            htmlFor="fechaFinal"
+            className="text-gray-700 uppercase font-bold text-center"
+          >
+            Fecha Final:
+          </label>
+          <input
+            type="date"
+            placeholder="Ingrese Fecha Final de Recibo Correcta"
+            id="fechaFinal"
+            name="fechaFinal"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
+            value={fechaApartado}
+            onChange={e=>setFechaApartado(e.target.value)}
+          />
         </div>
+         
+     
         
         <div className="mb-3 p-3">
           <label

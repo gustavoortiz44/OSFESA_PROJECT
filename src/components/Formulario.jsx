@@ -39,7 +39,7 @@ const Formulario = () => {
            
         }
         sweetAlert();
-        navigate('/Login')
+        navigate('/')
       
       })
       .catch(()=>{

@@ -10,35 +10,45 @@ const Generales = () => {
 
   useEffect(() => {
     const sesion = () => {
-      const usuario = localStorage.getItem("usuarioId");
-      if (!usuario) {
+      const usuarioId = localStorage.getItem("usuarioId");
+      if (!usuarioId) {
         navigate("/login");
       } else {
         setTimeout(() => {
           sweetAlertSesion();
-        }, 1400000);
+        }, 57000000);
 
         setTimeout(() => {
           localStorage.clear();
           navigate("/login");
-        }, 1500000);
+        }, 60000000);
       }
     };
     sesion();
   }, []);
-
+  const cerrarSesion=()=>{
+    localStorage.clear()
+    navigate('/login')
+  }
   return (
     <>
+    <div className="float-right ">
+        <button onClick={cerrarSesion}type="button" className="text-center text-gray-400     
+            mt-0 p- cursor-pointer uppercase font-serif text-sm py-4 ">Cerrar Sesion</button>
+      </div>
+
       <div className="object-left-top">
         <img src={OSFESA} className="w-25 h-14 " />
       </div>
-
+      
       <h1 className="text-center font-medium text-3xl font-serif mt-0 p-0 uppercase">
         Generales
       </h1>
 
       <div className="flex justify-center">
-        <FormularioGenerales />
+        <FormularioGenerales 
+        
+         />
       </div>
     </>
   );

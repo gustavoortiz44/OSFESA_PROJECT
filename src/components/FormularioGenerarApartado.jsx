@@ -118,7 +118,7 @@ const FormularioGenerarApartado = () => {
           </label>
           <input
             type="text"
-            placeholder="Ingrese Apellido Materno Correcto"
+      
             id="apellidoMaterno"
             name="apellidoMaterno"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
@@ -135,7 +135,7 @@ const FormularioGenerarApartado = () => {
           </label>
           <input
             type="text"
-            placeholder="Ingrese Apellido Materno Correcto"
+           
             id="apellidoMaterno"
             name="apellidoMaterno"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
