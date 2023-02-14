@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState,useEffect } from "react";
 import {
- sweetAlertError,
+ sweetAlertError, sweetAlertLogin,
 
 } from "../../sweetalert2/Alerta";
 
@@ -55,6 +55,8 @@ const FormularioLogin = () => {
           localStorage.setItem("usuarioId",(usuarioId))
          navigate('/menuDireccion')
 
+        }else{
+          sweetAlertLogin()
         }
            
       }).catch((error) => {
