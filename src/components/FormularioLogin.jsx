@@ -109,7 +109,7 @@ const FormularioLogin = () => {
           type="submit"
           className="bg-blue-500 text-center  font-bold text-lg rounded-md shadow-md text-white align-middle
             w-full p-3  cursor-pointer hover:bg-blue-400 uppercase "
-          value="Iniciar Secion"
+          value="Iniciar Sesion"
         />
       </form>
     </>
