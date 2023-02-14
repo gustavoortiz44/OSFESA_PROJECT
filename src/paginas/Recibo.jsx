@@ -10,26 +10,30 @@ const Recibo = () => {
     const sesion = () => {
       const usuario = localStorage.getItem("usuarioId");
       if (!usuario) {
-        navigate("/login");
+        navigate("/");
       } else {
         setTimeout(() => {
           sweetAlertSesion();
-        }, 570000);
+        }, 57000000);
 
         setTimeout(() => {
           localStorage.clear();
-          navigate("/login");
-        }, 600000);
+          navigate("/");
+        }, 60000000);
       }
     };
     sesion();
   }, []);
   const cerrarSesion=()=>{
     localStorage.clear()
-    navigate('/login')
+    navigate('/')
   }
   return (
     <>
+     <div className="float-right mt-0 ">
+        <button onClick={cerrarSesion}type="button" className="text-center text-gray-400     
+            mt-0  cursor-pointer uppercase font-serif text-sm py-4 ">Cerrar Sesion</button>
+      </div>
       <div className="object-left-top">
         <img src={OSFESA} className="w-25 h-14 " />
       </div>

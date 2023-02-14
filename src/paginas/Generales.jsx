@@ -12,7 +12,7 @@ const Generales = () => {
     const sesion = () => {
       const usuarioId = localStorage.getItem("usuarioId");
       if (!usuarioId) {
-        navigate("/login");
+        navigate("/");
       } else {
         setTimeout(() => {
           sweetAlertSesion();
@@ -20,7 +20,7 @@ const Generales = () => {
 
         setTimeout(() => {
           localStorage.clear();
-          navigate("/login");
+          navigate("/");
         }, 60000000);
       }
     };
@@ -28,7 +28,7 @@ const Generales = () => {
   }, []);
   const cerrarSesion=()=>{
     localStorage.clear()
-    navigate('/login')
+    navigate('/')
   }
   return (
     <>

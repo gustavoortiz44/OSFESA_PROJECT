@@ -15,19 +15,19 @@ const Apartado = () => {
       } else {
         setTimeout(() => {
           sweetAlertSesion();
-        },570000);
+        },57000000);
 
         setTimeout(() => {
           localStorage.clear();
-          navigate("/login");
-        },  600000);
+          navigate("/");
+        },  60000000);
       }
     };
     sesion();
   }, []);
   const cerrarSesion=()=>{
     localStorage.clear()
-    navigate('/login')
+    navigate('/')
   }
   return (
     <>

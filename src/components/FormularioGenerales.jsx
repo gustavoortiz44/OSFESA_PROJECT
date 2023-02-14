@@ -14,8 +14,8 @@ const FormularioGenerales = () => {
 
 
   const [usuario, setUsuario] = useState({
-    //idProspecto:'',
-    idVendedor:'',
+    idProspecto:'',
+    idVendedor:localStorage.getItem('usuarioId'),
     nombre:'',
     apellidoPaterno:'',
     apellidoMaterno:'',
@@ -86,14 +86,20 @@ const FormularioGenerales = () => {
      
       
 
-    }).then((response) => {
+    })
+    .then((response) => {
         if (response.status == true) {
            response.json();
+           
           
         
         }else if( usuario.estatus=='APARTADO'){
+          localStorage.setItem("usuario.idProspecto",usuario.idProspecto)
+           localStorage.setItem("usuario.nombre",usuario.nombre)
+           localStorage.setItem("usuario.apellidoPaterno",usuario.apellidoPaterno)
+           localStorage.setItem("usuario.apellidoMaterno",usuario.apellidoPaterno)
           
-          navigate(`/apartado/${usuario.nombre}/${usuario.apellidoPaterno}/${usuario.apellidoMaterno}`)
+          navigate(`/apartado/${usuario.idVendedor}`)
         }
         sweetAlert();
        
@@ -130,7 +136,7 @@ const FormularioGenerales = () => {
             id="idVendedor"
             name="idVendedor"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-            value={localStorage.getItem('usuarioId')}
+            value={usuario.idVendedor}
             //onChange={handleChange}
           />
        

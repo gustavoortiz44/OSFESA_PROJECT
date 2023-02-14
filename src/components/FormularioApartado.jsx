@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { useParams,useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import {
   sweetAlertcatch,
@@ -14,11 +14,13 @@ import {
 
 
 const FormularioApartado = () => {
-  const {id_prospecto}=useParams()
  
   const navigate=useNavigate()
 
-  const  [idProspecto,setIdProspecto]=useState(id_prospecto)
+  const  [idProspecto,setIdProspecto]=useState('')
+  const  [nombre,setNombre]=useState(localStorage.getItem('usuario.nombre'))
+  const  [apellidoPaterno,setApellidoPaterno]=useState(localStorage.getItem('usuario.apellidoPaterno'))
+  const  [apellidoMaterno,setApellidoMaterno]=useState(localStorage.getItem('usuario.apellidoMaterno'))
   const  [fechaApartado, setFechaApartado]=useState('')
   const  [idProyecto, setIdProyecto]=useState('')
   const  [importe, setImporte]=useState('')
@@ -63,12 +65,18 @@ const FormularioApartado = () => {
           "Content-type":"application/json",
         },
         body:JSON.stringify({
-         idProspecto:idProspecto,
-         fecha:fechaApartado,
-         idProyecto:idProyecto,
-         idLote:idLoteSFernando,
-         importe:importe,
+          idProspecto:idProspecto,
+          fecha:fechaApartado,
+          idProyecto:idProyecto,
+          idLote:idLoteSFernando,
+          
+          importe:importe,
          estatus:estatus
+          
+        
+        
+         
+         
         
         }),
        
@@ -111,18 +119,50 @@ const FormularioApartado = () => {
       >    
        <div className=" mb-3 p-3">
           <label
-            htmlFor="idProspecto"
+            htmlFor="nombre"
             className="text-gray-700 uppercase font-bold text-center"
           >
-            Id_Prospecto:
+            Nombre:
           </label>
           <input
             type="text"
         
-            id="idProspecto"
+            id="nombre"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
-            value={idProspecto}
-            onChange={e=>setIdProspecto(e.target.value)}
+            value={nombre}
+           
+    
+     
+          />
+           <label
+            htmlFor="apellidoPaterno"
+            className="text-gray-700 uppercase font-bold text-center"
+          >
+            Apellido Paterno:
+          </label>
+          <input
+            type="text"
+        
+            id="apellidoPaterno"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            value={apellidoPaterno}
+           
+    
+     
+          />
+           <label
+            htmlFor="apellidoMaterno"
+            className="text-gray-700 uppercase font-bold text-center"
+          >
+            Apellido Materno:
+          </label>
+          <input
+            type="text"
+        
+            id="apellidoMaterno"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            value={apellidoMaterno}
+           
     
      
           />

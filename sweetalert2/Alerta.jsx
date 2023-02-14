@@ -48,12 +48,14 @@ const sweetAlertLogin=()=>{
       
     } )
  }
+ 
   
   export {  
     sweetAlert,
     sweetAlertError,
     sweetAlertLogin,
     sweetAlertcatch,
-    sweetAlertSesion
+    sweetAlertSesion,
+
   
   }
