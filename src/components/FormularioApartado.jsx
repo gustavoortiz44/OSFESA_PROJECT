@@ -17,20 +17,17 @@ const FormularioApartado = () => {
  
   const navigate=useNavigate()
 
-  const  [idProspecto,setIdProspecto]=useState('')
-  const  [nombre,setNombre]=useState(localStorage.getItem('usuario.nombre'))
-  const  [apellidoPaterno,setApellidoPaterno]=useState(localStorage.getItem('usuario.apellidoPaterno'))
-  const  [apellidoMaterno,setApellidoMaterno]=useState(localStorage.getItem('usuario.apellidoMaterno'))
+  const  [idProspecto,setIdProspecto]=useState(localStorage.getItem("idProspecto"))
+  const  [nombre,setNombre]=useState(localStorage.getItem('nombre'))
+  const  [apellidoPaterno,setApellidoPaterno]=useState(localStorage.getItem('apellidoPaterno'))
+  const  [apellidoMaterno,setApellidoMaterno]=useState(localStorage.getItem('apellidoMaterno'))
   const  [fechaApartado, setFechaApartado]=useState('')
   const  [idProyecto, setIdProyecto]=useState('')
   const  [importe, setImporte]=useState('')
   const  [estatus, setEstatus]=useState('APARTADO')
   const [idLoteSFernando, setIdLoteSFernando] = useState('');
-  const [idLoteSFrancisco, setIdLoteSFrancisco] = useState('');
-  const [idLoteSJ, setIdLoteSJ] = useState('');
-  const [idLoteSanFeranado, setIdLoteSanFernando]=useState([])
-  const [idLoteSanFancisco, setidLoteSanFrancisco]=useState([])
-  const [idLoteSJose, setidLoteSJose]=useState([])
+  const [idLoteSanFernado, setIdLoteSanFernando]=useState([])
+  
   
  
 
@@ -69,22 +66,18 @@ const FormularioApartado = () => {
           fecha:fechaApartado,
           idProyecto:idProyecto,
           idLote:idLoteSFernando,
-          
           importe:importe,
-         estatus:estatus
-          
-        
-        
-         
-         
-        
+          estatus:estatus
         }),
        
         
   
       }).then((response) => {
+      
           if (response.status == true) {
+          
              response.json();
+            
              
           
           }
@@ -92,22 +85,16 @@ const FormularioApartado = () => {
          setTimeout(() => {
           const respuesta=confirm('Deseas Agregar Mas Apartados Este Mismo Usuario')
           if(!respuesta){
-            navigate('/generales')
-          }
-      
-       
-         }, 15000);
-         
-          
-      
-        
-        })
-        .catch(()=>{
+           
+              localStorage.removeItem("idProspecto")
+              localStorage.removeItem("nombre")
+              localStorage.removeItem("apellidoPaterno")
+              localStorage.removeItem("apellidoMaterno")
+               navigate('/generales')
+          }}, 15000);
+          }).catch(()=>{
           sweetAlertcatch()
-        })
-      
-       
-    };
+        })};
   
 
   return (
@@ -171,7 +158,7 @@ const FormularioApartado = () => {
             htmlFor="fechaFinal"
             className="text-gray-700 uppercase font-bold text-center"
           >
-            Fecha Final:
+            Fecha Apartado:
           </label>
           <input
             type="date"
@@ -191,7 +178,7 @@ const FormularioApartado = () => {
             htmlFor="idProyecto"
             className="text-gray-700 uppercase font-bold text-center"
           >
-            ID_PROYECTO:
+            PROYECTO:
           </label>
           <select value={idProyecto} onChange={e=>setIdProyecto(e.target.value)} className='uppercase font-bolt
           shadow-md rounded-md'>
@@ -206,60 +193,20 @@ const FormularioApartado = () => {
             htmlFor="idProyecto"
             className="text-gray-700 uppercase font-bold text-center"
           >
-            ID_LOTE(s) San Feranando:
+            LOTE San Fernando:
           </label>
           <select value={idLoteSFernando} onChange={e=>setIdLoteSFernando(e.target.value)} className='uppercase font-bolt
           shadow-md rounded-md'>
              <option value="">--Seleccione Lote--</option>
-        {idLoteSanFeranado.map(opcion=>(
+        {idLoteSanFernado.map(opcion=>(
             <option
              key={opcion.id_lote}
             value={opcion.id_lote}>
                 
            {opcion.id_lote} </option>
         ))}
-            
-          </select>
-          </div>
-          <div className="mb-3 p-3">
-          <label
-            htmlFor="idProyecto"
-            className="text-gray-700 uppercase font-bold text-center"
-          >
-            ID_LOTE(s) San Francisco:
-          </label>
-          <select value={idLoteSFrancisco} onChange={e=>setIdLoteSFrancisco(e.target.value)} className='uppercase font-bolt
-          shadow-md rounded-md'>
-             <option value="">--Seleccione Lote--</option>
-        {idLoteSanFancisco.map(opcion=>(
-            <option
-             key={opcion.id_lote}
-            value={opcion.id_lote}>
-                
-           {opcion.id_lote} </option>
-        ))}
-            
-          </select>
-          </div>
-          <div className="mb-3 p-3">
-          <label
-            htmlFor="idProyecto"
-            className="text-gray-700 uppercase font-bold text-center"
-          >
-            ID_LOTE(s) San Jose:
-          </label>
-          <select value={idLoteSJ} onChange={e=>setIdLoteSJ(e.target.value)} className='uppercase font-bolt
-          shadow-md rounded-md'>
-             <option value="">--Seleccione Lote--</option>
-        {idLoteSJose.map(opcion=>(
-            <option
-             key={opcion.id_lote}
-            value={opcion.id_lote}>
-                
-           {opcion.id_lote} </option>
-        ))}
-            
-          </select>
+            </select>
+     
           </div>
           <div className="mb-2 p-2">
           <label

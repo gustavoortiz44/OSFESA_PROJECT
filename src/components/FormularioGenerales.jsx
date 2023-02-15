@@ -10,11 +10,25 @@ import {
 } from "../../sweetalert2/Alerta";
 
 const FormularioGenerales = () => {
- 
+  const [idProspecto, setIdProspecto]=useState([])
+ useEffect(()=>{
+  const consultarApi = async () => {
+
+    const url = `${import.meta.env.VITE_BACKEND_URL}/obtenerIdProspecto.php`;
+
+    const respuesta = await fetch(url);
+    const relustado= await respuesta.json()
+   setIdProspecto(relustado); 
+  };
+  consultarApi();
+
+  localStorage.setItem("idProspecto",(idProspecto))
+
+},[idProspecto])
 
 
   const [usuario, setUsuario] = useState({
-    idProspecto:'',
+    idProspecto:localStorage.getItem('idProspecto'),
     idVendedor:localStorage.getItem('usuarioId'),
     nombre:'',
     apellidoPaterno:'',
@@ -50,9 +64,9 @@ const FormularioGenerales = () => {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-   /* if (Object.values(usuario).includes("")) {
+    if (Object.values(usuario).includes("")) {
      return  sweetAlertError();
-    }*/
+    }
 
     fetch(`${import.meta.env.VITE_BACKEND_URL}/crearGenerales.php`,{
       method:"POST",
@@ -61,7 +75,7 @@ const FormularioGenerales = () => {
         "Content-type":"application/json",
       },
       body:JSON.stringify({
-        //idProspecto:usuario.idProspecto,
+        idProspecto:usuario.idProspecto,
         idVendedor:usuario.idVendedor,
         nombre:usuario.nombre,
         apellidoPaterno:usuario.apellidoPaterno,
@@ -94,14 +108,27 @@ const FormularioGenerales = () => {
           
         
         }else if( usuario.estatus=='APARTADO'){
-          localStorage.setItem("usuario.idProspecto",usuario.idProspecto)
-           localStorage.setItem("usuario.nombre",usuario.nombre)
-           localStorage.setItem("usuario.apellidoPaterno",usuario.apellidoPaterno)
-           localStorage.setItem("usuario.apellidoMaterno",usuario.apellidoPaterno)
-          
-          navigate(`/apartado/${usuario.idVendedor}`)
+          localStorage.setItem("idProspecto",usuario.idProspecto)
+           localStorage.setItem("nombre",usuario.nombre)
+           localStorage.setItem("apellidoPaterno",usuario.apellidoPaterno)
+           localStorage.setItem("apellidoMaterno",usuario.apellidoPaterno)
+           setTimeout(() => {
+            navigate(`/apartado/${usuario.idProspecto}`)
+           }, 1000);
+         
+         
+        }else{
+          setTimeout(() => {
+            localStorage.removeItem("idProspecto")
+            localStorage.removeItem("nombre")
+            localStorage.removeItem("apellidoPaterno")
+            localStorage.removeItem("apellidoMaterno")
+            
+          },30000);
         }
         sweetAlert();
+        
+   
        
         
        

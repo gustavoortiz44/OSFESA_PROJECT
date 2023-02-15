@@ -32,11 +32,17 @@ const FormularioGenerarApartado = () => {
    
     .then((response)=>{
      setUsuario(response)
-    
+  
+           localStorage.setItem("nombre",usuarioProspecto.nombre)
+           localStorage.setItem("apellidoPaterno",usuarioProspecto.apellidoPaterno)
+           localStorage.setItem("apellidoMaterno",usuarioProspecto.apellidoPaterno)
     
      })
-     navigate(`/apartado/${usuario.id_prospecto}`)
-     console.log(usuario.id_prospecto)
+     setTimeout(() => {
+      navigate(`/apartado/${usuario.id_prospecto}`)
+     }, 20000);
+     
+     
    
      
 
