@@ -33,12 +33,12 @@ const MenuDireccion = () => {
       } else {
         setTimeout(() => {
           sweetAlertSesion();
-        }, 570000);
+        },590000);
 
         setTimeout(() => {
           localStorage.clear();
           navigate("/");
-        }, 600000);
+        },600000);
       }
     };
     sesion();
@@ -96,7 +96,7 @@ const MenuDireccion = () => {
           Reporte Admin
         </a>
         <a
-          href="https://grupoosfesa.com/index/REPORTE%20PAGOS%202023.xlsx"
+          href="https://grupoosfesa.com/index/CROQUIS_PSFND_DISPONIBLES.xlsx"
           className="bg-blue-500 text-center  font-bold text-lg rounded-md shadow-md text-white align-middle block 
           w-full p-3 mt-3  cursor-pointer hover:bg-blue-400 uppercase "
         >
@@ -132,7 +132,7 @@ const MenuDireccion = () => {
            Recibo
          </Link>
          <a
-          href="https://grupoosfesa.com/index/REPORTE%20PAGOS%202023.xlsx"
+          href="https://grupoosfesa.com/index/CROQUIS_PSFND_DISPONIBLES.xlsx"
           className="bg-blue-500 text-center  font-bold text-lg rounded-md shadow-md text-white align-middle block 
           w-full p-3 mt-3  cursor-pointer hover:bg-blue-400 uppercase "
         >

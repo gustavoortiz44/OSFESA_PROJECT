@@ -20,7 +20,7 @@ const Apartado = () => {
         setTimeout(() => {
           localStorage.clear();
           navigate("/");
-        },  600000);
+        },600000);
       }
     };
     sesion();

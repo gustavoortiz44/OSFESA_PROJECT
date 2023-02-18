@@ -19,7 +19,7 @@ const GenerarApartado = () => {
       } else {
         setTimeout(() => {
           sweetAlertSesion();
-        }, 590000);
+        },590000);
 
         setTimeout(() => {
           localStorage.clear();

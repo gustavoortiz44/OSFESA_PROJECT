@@ -150,6 +150,8 @@ const FormularioRecibo = () => {
         LOTE:'',
         MANZANA:'',
         ZONA:'',
+        FECHA_INICIAL:'',
+        MONTO_PAGO_SEM:''
         
        })
       
