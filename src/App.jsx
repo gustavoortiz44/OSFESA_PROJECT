@@ -28,10 +28,9 @@ function App() {
       <Route path='/apartado/:id_prospecto'element={<Apartado/>}/>
       <Route path='/recibo'element={<Recibo/>}/>
       <Route path='/generarApartado'element={<GenerarApartado/>}/>
-      <Route path='/menuVendedor'element={<MenuVendedor/>}/>
-      <Route path='/menuCapturista'element={<MenuCapturista/>}/>
-      <Route path='/menuAdministrador'element={<MenuAdministrador/>}/>
-      <Route path='/menuDireccion'element={<MenuDireccion/>}/>
+     
+ 
+      <Route path='/menu'element={<MenuDireccion/>}/>
 
     </Routes>
     </BrowserRouter>

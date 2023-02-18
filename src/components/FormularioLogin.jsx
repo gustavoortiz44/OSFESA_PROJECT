@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState,useEffect } from "react";
 import {
+  sweetAlerCLienteAutenticacion,
  sweetAlertError, sweetAlertLogin,
 
 } from "../../sweetalert2/Alerta";
@@ -26,38 +27,33 @@ const FormularioLogin = () => {
       body:JSON.stringify({
         userId:usuarioId,
         password:passwordUser,
-      })
+      }),
+     //mode:"no-cors"
+  
       
     })
       
     .then(responseJson=>responseJson.json())
-    
+   
       .then((response) => {
-        if (response.captura==true) {
+        if (response.recepcion==='recepcion') {
          
-      
+      localStorage.setItem("nivel",response.recepcion)
           localStorage.setItem("usuarioId",(usuarioId))
-      
-         navigate('/menuCapturista')
+    
+         navigate('/menu')
           
-        }else if(response.admin==true){
-          
+        }else if(response.direccion==='direccion'){
+          localStorage.setItem("nivel",response.direccion)
           localStorage.setItem("usuarioId",(usuarioId))
-         navigate('/menuAdministrador')
+          
+         navigate('/menu')
+        
 
-        }else if(response.ventas==true){
-          
-          localStorage.setItem("usuarioId",(usuarioId))
-         navigate('/menuVendedor')
-
-        }else if(response.direccion==true){
-          
-          localStorage.setItem("usuarioId",(usuarioId))
-         navigate('/menuDireccion')
-
-        }else{
-          sweetAlertLogin()
+        }else if(passwordUser!=password && usuarioId!=userId){
+         sweetAlerCLienteAutenticacion()
         }
+       
            
       }).catch((error) => {
         console.log(error);
@@ -75,11 +71,11 @@ const FormularioLogin = () => {
             htmlFor="userId"
             className="text-gray-700 uppercase font-bold text-center"
           >
-            Id_Usuario:
+            Usuario:
           </label>
           <input
             type="text"
-            placeholder="Ingrese Id_Usuario Correcto"
+            placeholder="Ingrese Usuario Correcto"
             id="userId"
             name="usuarioId"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"

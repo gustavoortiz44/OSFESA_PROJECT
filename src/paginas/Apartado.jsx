@@ -1,7 +1,7 @@
 import { sweetAlertSesion } from "../../sweetalert2/Alerta";
 import FormularioApartado from "../components/FormularioApartado";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 
 import OSFESA from "../IMG/OSFESA.png";
 
@@ -11,16 +11,16 @@ const Apartado = () => {
     const sesion = () => {
       const usuario = localStorage.getItem("usuarioId");
       if (!usuario) {
-        navigate("/login");
+        navigate("/");
       } else {
         setTimeout(() => {
           sweetAlertSesion();
-        },57000000);
+        },570000);
 
         setTimeout(() => {
           localStorage.clear();
           navigate("/");
-        },  60000000);
+        },  600000);
       }
     };
     sesion();
@@ -31,13 +31,23 @@ const Apartado = () => {
   }
   return (
     <>
-     <div className="float-right mt-0 ">
-        <button onClick={cerrarSesion}type="button" className="text-center text-gray-400     
-            mt-0  cursor-pointer uppercase font-serif text-sm py-4 ">Cerrar Sesion</button>
-      </div>
+  
+      
+      <header  >
+        <div className="float-right ">  <button onClick={cerrarSesion}type="button" className="text-center text-gray-400     
+            mt-0 mr-5 cursor-pointer uppercase font-serif text-sm  ">Cerrar Sesion</button>
+
+
+        <Link to='/menu'  className="text-center text-gray-400     
+            mt-0 mr-5 cursor-pointer uppercase font-serif text-sm  ">Menu</Link>
+      </div></header>
+      
+    
 
       <div className="object-left-top">
-        <img src={OSFESA} className="w-25 h-14 " />
+      <Link to='/menu'>
+        <img   src={OSFESA} className="w-25 h-14 " />
+        </Link>
       </div>
      
       <h1 className="text-center font-medium text-3xl font-serif mt-0 p-0 uppercase">

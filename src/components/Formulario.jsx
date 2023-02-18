@@ -31,6 +31,7 @@ const Formulario = () => {
           level:levelUser,
           
         }),
+        mode:"no-cors"
  
       }).then((response) => {
         if (response.status == true) {
@@ -63,11 +64,11 @@ const Formulario = () => {
             htmlFor="userId"
             className="text-gray-700 uppercase font-bold text-center"
           >
-            Id_Usuario:
+            Usuario:
           </label>
           <input
             type="text"
-            placeholder="Ingrese Usuario_Id Correcto"
+            placeholder="Ingrese Usuario Correcto"
             id="userId"
             name="usuarioId"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
@@ -104,9 +105,8 @@ const Formulario = () => {
           shadow-md rounded-md'>
             <option value=''>--Selecciona el Nivel Correcto--</option>
             <option>DIRECCION</option>
-            <option>ADMINISTRADOR</option>
-            <option>VENTAS</option>
-            <option>CAPTURA</option>
+            <option>RECEPCION</option>
+           
           </select>
          
         </div>

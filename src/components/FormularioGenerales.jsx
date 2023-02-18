@@ -10,6 +10,7 @@ import {
 } from "../../sweetalert2/Alerta";
 
 const FormularioGenerales = () => {
+
   const [idProspecto, setIdProspecto]=useState([])
  useEffect(()=>{
   const consultarApi = async () => {
@@ -28,7 +29,7 @@ const FormularioGenerales = () => {
 
 
   const [usuario, setUsuario] = useState({
-    idProspecto:localStorage.getItem('idProspecto'),
+    idProspecto:'PR_'+localStorage.getItem("idProspecto"),
     idVendedor:localStorage.getItem('usuarioId'),
     nombre:'',
     apellidoPaterno:'',
@@ -39,7 +40,7 @@ const FormularioGenerales = () => {
     gradoEstudios:'',
     ocupacion:'',
     telefonoCel:'',
-    telefonoCasa:'',
+  
     calle:'',
     numeroInt:'',
     numeroExt:'',
@@ -86,7 +87,7 @@ const FormularioGenerales = () => {
         gradoEstudios:usuario.gradoEstudios,
         ocupacion:usuario.ocupacion,
         telefonoCel:usuario.telefonoCel,
-        //telefonoCasa:usuario.telefonoCasa,
+      
         calle:usuario.calle,
         numeroInt:usuario.numeroInt,
         numeroExt:usuario.numeroExt,
@@ -97,12 +98,14 @@ const FormularioGenerales = () => {
         estatus:usuario.estatus
         
       }),
-     
+     mode:"no-cors"
       
 
     })
     .then((response) => {
+  
         if (response.status == true) {
+         
            response.json();
            
           
@@ -124,10 +127,31 @@ const FormularioGenerales = () => {
             localStorage.removeItem("apellidoPaterno")
             localStorage.removeItem("apellidoMaterno")
             
-          },30000);
+          },3000);
         }
         sweetAlert();
+        setUsuario({
+          nombre:'',
+          apellidoPaterno:'',
+          apellidoMaterno:'',
+          nacionalidad:'',
+          edad:'',
+          estadoCivil:'',
+          gradoEstudios:'',
+          ocupacion:'',
+          telefonoCel:'',
         
+          calle:'',
+          numeroInt:'',
+          numeroExt:'',
+          colonia:'',
+          estado:'',
+          municipio:'',
+          beneficiario:'',
+          estatus:''
+        
+      
+        })
    
        
         
@@ -164,7 +188,7 @@ const FormularioGenerales = () => {
             name="idVendedor"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={usuario.idVendedor}
-            //onChange={handleChange}
+      
           />
        
         </div>

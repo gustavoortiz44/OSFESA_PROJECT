@@ -4,9 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 import {
   sweetAlertcatch,
-  sweetAlertError,
-
-  sweetAlert,
+   sweetAlert,
+  sweetAlerApartado,
 
 } from "../../sweetalert2/Alerta";
 
@@ -14,6 +13,12 @@ import {
 
 
 const FormularioApartado = () => {
+  const newDate = new Date()
+  const date = newDate.getDate();
+  const month = newDate.getMonth() + 1;
+  const year = newDate.getFullYear();
+  const fecha=year+'-'+month+'-'+date
+  
  
   const navigate=useNavigate()
 
@@ -21,7 +26,7 @@ const FormularioApartado = () => {
   const  [nombre,setNombre]=useState(localStorage.getItem('nombre'))
   const  [apellidoPaterno,setApellidoPaterno]=useState(localStorage.getItem('apellidoPaterno'))
   const  [apellidoMaterno,setApellidoMaterno]=useState(localStorage.getItem('apellidoMaterno'))
-  const  [fechaApartado, setFechaApartado]=useState('')
+  const  [fechaApartado, setFechaApartado]=useState(fecha)
   const  [idProyecto, setIdProyecto]=useState('')
   const  [importe, setImporte]=useState('')
   const  [estatus, setEstatus]=useState('APARTADO')
@@ -51,8 +56,8 @@ const FormularioApartado = () => {
  
     const handleSubmit = (e) => {
       e.preventDefault();
-      if ([idProyecto,importe].includes('')) {
-       return  sweetAlertError();
+      if ([idProyecto,idLoteSFernando,importe].includes('')) {
+       return  sweetAlerApartado();
       }
   
       fetch(`${import.meta.env.VITE_BACKEND_URL}/crearApartado.php`,{
@@ -69,14 +74,17 @@ const FormularioApartado = () => {
           importe:importe,
           estatus:estatus
         }),
+        mode:"no-cors"
        
         
   
-      }).then((response) => {
+      })
+      .then((response) => {
       
           if (response.status == true) {
           
              response.json();
+          
             
              
           
@@ -91,7 +99,7 @@ const FormularioApartado = () => {
               localStorage.removeItem("apellidoPaterno")
               localStorage.removeItem("apellidoMaterno")
                navigate('/generales')
-          }}, 15000);
+          }}, 3000);
           }).catch(()=>{
           sweetAlertcatch()
         })};
@@ -115,7 +123,7 @@ const FormularioApartado = () => {
             type="text"
         
             id="nombre"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={nombre}
            
     
@@ -131,7 +139,7 @@ const FormularioApartado = () => {
             type="text"
         
             id="apellidoPaterno"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={apellidoPaterno}
            
     
@@ -147,7 +155,7 @@ const FormularioApartado = () => {
             type="text"
         
             id="apellidoMaterno"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={apellidoMaterno}
            
     
@@ -161,13 +169,13 @@ const FormularioApartado = () => {
             Fecha Apartado:
           </label>
           <input
-            type="date"
+            type="text"
             placeholder="Ingrese Fecha Final de Recibo Correcta"
             id="fechaFinal"
             name="fechaFinal"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={fechaApartado}
-            onChange={e=>setFechaApartado(e.target.value)}
+            //onChange={e=>setFechaApartado(e.target.value)}
           />
         </div>
          
