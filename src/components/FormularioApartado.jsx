@@ -17,7 +17,7 @@ const FormularioApartado = () => {
   const date = newDate.getDate();
   const month = newDate.getMonth() + 1;
   const year = newDate.getFullYear();
-  const fecha=year+'-'+month+'-'+date
+  const fecha=year+'-'+'0'+month+'-'+date
   
  
   const navigate=useNavigate()

@@ -14,7 +14,7 @@ const Recibo = () => {
       } else {
         setTimeout(() => {
           sweetAlertSesion();
-        }, 570000);
+        }, 590000);
 
         setTimeout(() => {
           localStorage.clear();

@@ -4,11 +4,13 @@ import { sweetAlert, sweetAlertError,sweetAlertcatch, sweetAlerId } from "../../
 const FormularioRecibo = () => {
   const newDate = new Date()
   const date = newDate.getDate();
-  const month = newDate.getMonth() + 1;
+  const month = newDate.getMonth()+1;
   const year = newDate.getFullYear();
-  const fecha=year+'-'+month+'-'+date
+  const fecha=year+'-'+'0'+month+'-'+date
   
   const [idRecibos, setIdRecibos]=useState([])
+  const [idContrato, setIdContrato] = useState('')
+  const [usuario, setIdUsuario] = useState({})
   useEffect(()=>{
     const consultarApi = async () => {
   
@@ -26,17 +28,16 @@ const FormularioRecibo = () => {
   const [recibo, setRecibo] = useState({
     idRecibo:'RE_'+localStorage.getItem("idRecibo"),
     fechaRecibo:fecha,
-    fechaInicial:'',
+    //fechaInicial:'',
     fechaFinal:'',
     cantidadPagos:'',
-    monto:'',
+    //monto:'',
     observaciones:'',
     usuarioAutenticado:localStorage.getItem("usuarioId"),
     usuarioCaptura:localStorage.getItem("usuarioId")
 
   })
-  const [idContrato, setIdContrato] = useState('')
-  const [usuario, setIdUsuario] = useState({})
+
  
  
  
@@ -111,10 +112,10 @@ const FormularioRecibo = () => {
           apellidoPaterno:usuario.APELLIDO_PATERNO,
           apellidoMaterno:usuario.APELLIDO_MATERNO,
           fechaRecibo:recibo.fechaRecibo,
-          fechaInicial:usuario.fechaInicial,
+          fechaInicial:usuario.FECHA_INICIAL,
           fechaFinal:recibo.fechaFinal,
           cantidadPagos:recibo.cantidadPagos,
-          monto:recibo.monto,
+          monto:usuario.MONTO_PAGO_SEM,
           observaciones:recibo.observaciones,
           usuarioAutenticado:recibo.usuarioAutenticado,
           usuarioCaptura:recibo.usuarioCaptura
@@ -308,13 +309,13 @@ const FormularioRecibo = () => {
             Fecha Inicial:
           </label>
           <input
-            type="date"
+            type="text"
             placeholder="Ingrese Fecha Final de Recibo Correcta"
             id="fechaInicial"
             name="fechaInicial"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-           value={recibo.fechaInicial}
-            onChange={handleChange}
+           value={usuario.FECHA_INICIAL}
+        
           />
         </div>
         <div className="mb-3 p-3 float-left">
@@ -342,7 +343,7 @@ const FormularioRecibo = () => {
             Cantidad Pagos:
           </label>
           <input
-            type="text"
+            type="number"
             placeholder="Ingrese Monto Correcto"
             id="cantidadPagos"
             name="cantidadPagos"
@@ -359,12 +360,12 @@ const FormularioRecibo = () => {
             Monto $:
           </label>
           <input
-            type="text"
+            type="number"
             placeholder="Ingrese Monto Correcto"
             id="monto"
             name="monto"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-            value={recibo.monto}
+            value={usuario.MONTO_PAGO_SEM * recibo.cantidadPagos}
            onChange={handleChange}
           />
         </div>
