@@ -33,7 +33,7 @@ const MenuDireccion = () => {
       } else {
         setTimeout(() => {
           sweetAlertSesion();
-        },590000);
+        },600000);
 
         setTimeout(() => {
           localStorage.clear();

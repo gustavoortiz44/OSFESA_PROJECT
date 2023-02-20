@@ -7,9 +7,7 @@ import OSFESA from "../IMG/OSFESA.png";
 
 const GenerarApartado = () => {
   const navigate = useNavigate();
-  useEffect(()=>{
 
-  },[])
 
   useEffect(() => {
     const sesion = () => {
@@ -19,7 +17,7 @@ const GenerarApartado = () => {
       } else {
         setTimeout(() => {
           sweetAlertSesion();
-        },590000);
+        },600000);
 
         setTimeout(() => {
           localStorage.clear();

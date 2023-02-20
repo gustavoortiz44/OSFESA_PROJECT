@@ -26,7 +26,7 @@ const FormularioGenerarApartado = () => {
   const [idLoteSFernando, setIdLoteSFernando] = useState("");
   const [idLoteSanFernado, setIdLoteSanFernando] = useState([]);
   const [usuario, setUsuario] = useState({});
-
+  
   useEffect(() => {
     const consultarApi = async () => {
       const url = `${import.meta.env.VITE_BACKEND_URL}/obtenerIdLote.php`;
