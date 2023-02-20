@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { useState,useEffect } from "react";
+import { useState } from "react";
 import {
   sweetAlerCLienteAutenticacion,
- sweetAlertError, sweetAlertLogin,
+ sweetAlertError,
 
 } from "../../sweetalert2/Alerta";
 
@@ -79,7 +79,7 @@ const FormularioLogin = () => {
             id="userId"
             name="usuarioId"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-            value={usuarioId}
+            value={usuarioId.trim()}
             onChange={(e) => setUserId(e.target.value)}
             
           />
@@ -97,7 +97,7 @@ const FormularioLogin = () => {
             id="password"
             name="password"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-            value={passwordUser}
+            value={passwordUser.trim()}
             onChange={(e) => setPassword(e.target.value)}
            
           />

@@ -72,7 +72,7 @@ const Formulario = () => {
             id="userId"
             name="usuarioId"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-            value={usuarioId}
+            value={usuarioId.trim()}
             onChange={(e) => setUserId(e.target.value)}
           />
         </div>
@@ -90,7 +90,7 @@ const Formulario = () => {
             id="nombre"
             name="nombreUsuario"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-            value={nombreUsuario}
+            value={nombreUsuario.trimStart()}
             onChange={(e) => setNombre(e.target.value)}
           />
         </div>
@@ -125,7 +125,7 @@ const Formulario = () => {
             id="password"
             name="passwordUser"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-            value={passwordUser}
+            value={passwordUser.trim()}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>

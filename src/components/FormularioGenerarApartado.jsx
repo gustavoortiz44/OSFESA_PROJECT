@@ -147,7 +147,7 @@ const FormularioGenerarApartado = () => {
             id="nombre"
             name="nombre"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-            value={usuarioProspecto.nombre}
+            value={usuarioProspecto.nombre.trim()}
             onChange={handleChange}
           />
         </div>
@@ -164,7 +164,7 @@ const FormularioGenerarApartado = () => {
             id="apellidoPaterno"
             name="apellidoPaterno"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-            value={usuarioProspecto.apellidoPaterno}
+            value={usuarioProspecto.apellidoPaterno.trim()}
             onChange={handleChange}
           />
         </div>
@@ -181,7 +181,7 @@ const FormularioGenerarApartado = () => {
             id="apellidoMaterno"
             name="apellidoMaterno"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-            value={usuarioProspecto.apellidoMaterno}
+            value={usuarioProspecto.apellidoMaterno.trim()}
             onChange={handleChange}
           />
         </div>
