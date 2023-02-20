@@ -5,10 +5,7 @@ import Generales from'./paginas/Generales'
 import Apartado from './paginas/Apartado'
 import Recibo from './paginas/Recibo'
 import GenerarApartado from './paginas/GenerarApartado'
-import MenuVendedor from './paginas/MenuVendedor'
-import MenuCapturista from './paginas/MenuCapturista'
-import MenuAdministrador from './paginas/MenuAdministrador'
-import MenuDireccion from './paginas/MenuDireccion'
+import MenuPrincipal from './paginas/MenuPrincipal'
 import{BrowserRouter,Routes,Route}from 'react-router-dom'
 
 
@@ -30,7 +27,7 @@ function App() {
       <Route path='/generarApartado'element={<GenerarApartado/>}/>
      
  
-      <Route path='/menu'element={<MenuDireccion/>}/>
+      <Route path='/menu'element={<MenuPrincipal/>}/>
 
     </Routes>
     </BrowserRouter>

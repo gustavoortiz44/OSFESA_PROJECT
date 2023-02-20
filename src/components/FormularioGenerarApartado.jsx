@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import {
   sweetAlerCLienteNoEncontrado,
   sweetAlerGenerarApartado,
-  sweetAlertcatch,sweetAlert
+  sweetAlertcatch,sweetAlert, sweetAlerApartado
 } from "../../sweetalert2/Alerta";
 
 const FormularioGenerarApartado = () => {
@@ -38,6 +38,32 @@ const FormularioGenerarApartado = () => {
     };
     consultarApi();
   }, []);
+  const handleUpdate=()=>{
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/actualizarEstatusProspecto.php`, {
+      method:"POST",
+      headers: {
+        "Accept":"application/json",
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        idProspecto:usuario.id_prospecto
+     
+      }),
+      mode:"no-cors"
+     
+     
+    }) .then(response=>{
+      if(response==true){
+        response.json()
+      }
+      
+    })
+   
+    .catch(error => {
+       console.log(error)
+      });
+   
+  }
 
   const handleSubmitConsultar = (e) => {
     e.preventDefault();
@@ -73,7 +99,7 @@ const FormularioGenerarApartado = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if ([idProyecto, idLoteSFernando, importe].includes("")) {
-      return sweetAlerApartado();
+      return  sweetAlerApartado();
     }
 
     fetch(`${import.meta.env.VITE_BACKEND_URL}/crearApartado.php`, {
@@ -97,21 +123,26 @@ const FormularioGenerarApartado = () => {
           response.json();
         }
         sweetAlert();
+        setIdProyecto('')
+        setIdLoteSFernando('')
         setTimeout(() => {
-          const respuesta=confirm('Deseas Agregar Mas Apartados Este Mismo Usuario')
+          const respuesta=confirm('Deseas Agregar Mas Apartados A Este Mismo Usuario')
           if(!respuesta){
+            handleUpdate()
             setUsuarioProspecto({
               nombre: "",
               apellidoPaterno: "",
               apellidoMaterno: "",
-            });
-            setUsuario({
-              id_prospecto:'',
-              estatus:''
             })
-            setFechaApartado("");
-            setImporte("");
-            setImporte("");
+            setUsuario({
+             id_prospecto:'',
+              estatus:''
+             })
+            setIdProyecto('')
+            setIdLoteSFernando(''),
+            setImporte('')
+           
+         
           
           }},2000);
         
@@ -147,7 +178,7 @@ const FormularioGenerarApartado = () => {
             id="nombre"
             name="nombre"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-            value={usuarioProspecto.nombre.trim()}
+            value={usuarioProspecto.nombre.trimStart()}
             onChange={handleChange}
           />
         </div>
@@ -164,7 +195,7 @@ const FormularioGenerarApartado = () => {
             id="apellidoPaterno"
             name="apellidoPaterno"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-            value={usuarioProspecto.apellidoPaterno.trim()}
+            value={usuarioProspecto.apellidoPaterno.trimStart()}
             onChange={handleChange}
           />
         </div>
@@ -181,7 +212,7 @@ const FormularioGenerarApartado = () => {
             id="apellidoMaterno"
             name="apellidoMaterno"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-            value={usuarioProspecto.apellidoMaterno.trim()}
+            value={usuarioProspecto.apellidoMaterno.trimStart()}
             onChange={handleChange}
           />
         </div>

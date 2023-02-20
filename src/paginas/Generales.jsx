@@ -16,12 +16,12 @@ const Generales = () => {
       } else {
         setTimeout(() => {
           sweetAlertSesion();
-        }, 600000);
+        }, 60000000);
 
         setTimeout(() => {
           localStorage.clear();
           navigate("/");
-        },600000);
+        },60000000);
       }
     };
     sesion();
