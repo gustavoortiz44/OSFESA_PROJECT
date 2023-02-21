@@ -29,7 +29,7 @@ const FormularioRecibo = () => {
     idRecibo:'RE_'+localStorage.getItem("idRecibo"),
     fechaRecibo:fecha,
     //fechaInicial:'',
-    fechaFinal:'',
+    //fechaFinal:'',
     cantidadPagos:'',
     //monto:'',
     observaciones:'',
@@ -50,7 +50,7 @@ const FormularioRecibo = () => {
   const handleSubmitId =  (e) => {
     e.preventDefault();
     if (
-        [idContrato].includes("")
+        [idContrato,recibo.cantidadPagos].includes("")
     ) {
       return sweetAlerId();
     }
@@ -63,7 +63,8 @@ const FormularioRecibo = () => {
           "Content-type":"application/json",
         },
         body:JSON.stringify({
-          idContrato:idContrato
+          idContrato:idContrato,
+          cantidadPagos:recibo.cantidadPagos
           
 
 
@@ -80,18 +81,11 @@ const FormularioRecibo = () => {
       })
 
     };
-    const handleChange=e=>{
-        setRecibo({
-            ...recibo,
-            [e.target.name]:e.target.value
-
-        })
-
-    }
+    
      const handleSubmit =  (e) => {
     e.preventDefault();
     if (
-        [idContrato].includes("")
+        [idContrato,recibo.cantidadPagos].includes("")
     ) {
       return sweetAlerId();
     }
@@ -113,9 +107,9 @@ const FormularioRecibo = () => {
           apellidoMaterno:usuario.APELLIDO_MATERNO,
           fechaRecibo:recibo.fechaRecibo,
           fechaInicial:usuario.FECHA_INICIAL,
-          fechaFinal:recibo.fechaFinal,
+          fechaFinal:usuario.FECHA_PAGO,
           cantidadPagos:recibo.cantidadPagos,
-          monto:usuario.MONTO_PAGO_SEM,
+          monto:usuario.TOTAL_A_PAGAR,
           observaciones:recibo.observaciones,
           usuarioAutenticado:recibo.usuarioAutenticado,
           usuarioCaptura:recibo.usuarioCaptura
@@ -151,13 +145,33 @@ const FormularioRecibo = () => {
         MANZANA:'',
         ZONA:'',
         FECHA_INICIAL:'',
-        MONTO_PAGO_SEM:''
+        MONTO_PAGO_SEM:'',
+        FECHA_PAGO:'',
+        TOTAL_A_PAGAR:''
+        
         
        })
+       setRecibo([])
       
       })
           
     }
+    const handleChange=e=>{
+      setRecibo({
+          ...recibo,
+          [e.target.name]:e.target.value
+
+      })
+
+  }
+  const handleChangeUsuario=e=>{
+    setRecibo({
+        ...usuario,
+        [e.target.name]:e.target.value
+
+    })
+
+}
 
 
 
@@ -168,7 +182,7 @@ const FormularioRecibo = () => {
        onSubmit={handleSubmit}
       >
 
-        <div className="mb-3 p-3 ">
+        <div className="mb-2 p-2 ">
       <label
         htmlFor="idContrato"
         className="text-gray-700 uppercase font-bold text-center"
@@ -184,9 +198,34 @@ const FormularioRecibo = () => {
        value={idContrato}
         onChange={e=>setIdContrato(e.target.value)}
       />
+       
+    <div>
+
     </div>
     <div>
-    <div className="mb-3 p-3 float-left">
+    <div className=" mb-2 p-2">
+          <label
+            htmlFor="cantidadPagos"
+            className="text-gray-700 uppercase font-bold text-center"
+          >
+            Cantidad Pagos:
+          </label>
+          <input
+            type="number"
+            placeholder="Ingrese Cantidad De Pagos Correcto"
+            id="cantidadPagos"
+            name="cantidadPagos"
+            className="border-2  p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
+           value={recibo.cantidadPagos}
+            onChange={handleChange}
+          />
+        </div>
+    </div>
+       
+    </div>
+   
+    <div>
+    <div className="mb-2 p-2 float-left">
       <label
         htmlFor="nombre"
         className="text-gray-700 uppercase font-bold text-center"
@@ -202,7 +241,7 @@ const FormularioRecibo = () => {
        
       />
     </div>
-    <div className="mb-3 p-3 float-left">
+    <div className="mb-2 p-2 float-left">
       <label
         htmlFor="apellidoPaterno"
         className="text-gray-700 uppercase font-bold text-center"
@@ -219,7 +258,7 @@ const FormularioRecibo = () => {
        
       />
     </div>
-    <div className="mb-3 p-3 float-left">
+    <div className="mb-2 p-2 float-left">
       <label
         htmlFor="apellidoMaterno"
         className="text-gray-700 uppercase font-bold text-center"
@@ -237,7 +276,7 @@ const FormularioRecibo = () => {
     </div>
     </div>
        <div>
-       <div className="mb-3 p-3 float-left">
+       <div className="mb-2 p-2 float-left">
       <label
         htmlFor="lote"
         className="text-gray-700 uppercase font-bold text-center"
@@ -253,7 +292,7 @@ const FormularioRecibo = () => {
         value={usuario.LOTE}
       />
     </div>
-    <div className="mb-3 p-3 float-left">
+    <div className="mb-2 p-2 float-left">
       <label
         htmlFor="manzana"
         className="text-gray-700 uppercase font-bold text-center"
@@ -269,7 +308,7 @@ const FormularioRecibo = () => {
         value={usuario.MANZANA}
       />
     </div>
-    <div className="mb-3 p-3 float-left">
+    <div className="mb-2 p-2 float-left">
       <label
         htmlFor="zona"
         className="text-gray-700 uppercase font-bold text-center"
@@ -286,7 +325,7 @@ const FormularioRecibo = () => {
       />
     </div>
     <div>
-    <div className="mb-3 p-3 float-left">
+    <div className="mb-2 p-2 float-left">
           <label
             htmlFor="fechaRecibo"
             className="text-gray-700 uppercase font-bold text-center"
@@ -303,7 +342,7 @@ const FormularioRecibo = () => {
             //onChange={handleChange}
           />
         </div>
-        <div className="mb-3 p-3 float-left">
+        <div className="mb-2 p-2 float-left">
           <label
             htmlFor="fechaInicial"
             className="text-gray-700 uppercase font-bold text-center"
@@ -320,7 +359,7 @@ const FormularioRecibo = () => {
         
           />
         </div>
-        <div className="mb-3 p-3 float-left">
+        <div className="mb-2 p-2 float-left">
           <label
             htmlFor="fechaFinal"
             className="text-gray-700 uppercase font-bold text-center"
@@ -328,33 +367,17 @@ const FormularioRecibo = () => {
             Fecha Final:
           </label>
           <input
-            type="date"
+            type="text"
             placeholder="Ingrese Fecha Final de Recibo Correcta"
             id="fechaFinal"
             name="fechaFinal"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-           value={recibo.fechaFinal}
+           value={usuario.FECHA_PAGO}
             onChange={handleChange}
           />
         </div>
-        <div className="mb-3 p-3 float-left">
-          <label
-            htmlFor="cantidadPagos"
-            className="text-gray-700 uppercase font-bold text-center"
-          >
-            Cantidad Pagos:
-          </label>
-          <input
-            type="number"
-            placeholder="Ingrese Monto Correcto"
-            id="cantidadPagos"
-            name="cantidadPagos"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-           value={recibo.cantidadPagos}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3 p-3 float-left">
+       
+        <div className="mb-2 p-2 float-left">
           <label
             htmlFor="monto"
             className="text-gray-700 uppercase font-bold text-center"
@@ -367,15 +390,15 @@ const FormularioRecibo = () => {
             id="monto"
             name="monto"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-            value={usuario.MONTO_PAGO_SEM * recibo.cantidadPagos}
-           onChange={handleChange}
+            value={usuario.TOTAL_A_PAGAR}
+           onChange={handleChangeUsuario}
           />
         </div>
     </div>
     <div>
    
     
-        <div className="mb-3 p-3 float-none">
+        <div className="mb-2 p-2 float-none">
          
           <textarea
             type="text"

@@ -52,7 +52,7 @@ const sweetAlertLogin=()=>{
   swal.fire({  
       position: 'center',
       icon: 'error',
-      title: 'EL NUMERO DE CONTRATO ES NECESARIO',
+      title: 'EL NUMERO DE CONTRATO  Y CANTIDAD DE PAGOS SON NECESARIOS',
       showConfirmButton: false,
       timer: 1500
     })
