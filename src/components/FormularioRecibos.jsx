@@ -209,7 +209,7 @@ const FormularioRecibo = () => {
               value={usuario.APELLIDO_PATERNO}
             />
           </div>
-          <div className="mb-2 p-2 float-right">
+          <div className="mb-2 p-2 float-left">
             <label
               htmlFor="apellidoMaterno"
               className="text-gray-700 uppercase font-bold text-center"

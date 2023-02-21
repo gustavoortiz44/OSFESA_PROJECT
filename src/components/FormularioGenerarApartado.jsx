@@ -125,8 +125,11 @@ const FormularioGenerarApartado = () => {
         sweetAlert();
         setIdProyecto('')
         setIdLoteSFernando('')
+        
         setTimeout(() => {
           const respuesta=confirm('Deseas Agregar Mas Apartados A Este Mismo Usuario')
+         
+  
           if(!respuesta){
             handleUpdate()
             setUsuarioProspecto({
