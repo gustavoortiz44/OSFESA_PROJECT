@@ -23,7 +23,7 @@ const FormularioGenerales = () => {
   }, [idProspecto]);
 
   const [usuario, setUsuario] = useState({
-    idProspecto: "PR_" + localStorage.getItem("idProspecto"),
+    //idProspecto: "PR_" + localStorage.getItem("idProspecto"),
     idVendedor: localStorage.getItem("usuarioId"),
     nombre:"",
     apellidoPaterno: "",
@@ -65,7 +65,7 @@ fetch(`${import.meta.env.VITE_BACKEND_URL}/crearGenerales.php`, {
     "Content-type":"application/json",
   },
   body: JSON.stringify({
-    idProspecto: usuario.idProspecto,
+    idProspecto:"PR_" + localStorage.getItem("idProspecto"),
     idVendedor: usuario.idVendedor,
     nombre: usuario.nombre,
     apellidoPaterno: usuario.apellidoPaterno,
@@ -98,13 +98,6 @@ fetch(`${import.meta.env.VITE_BACKEND_URL}/crearGenerales.php`, {
       setTimeout(() => {
         navigate(`/apartado/${usuario.idProspecto}`);
       }, 1000);
-    } else {
-      setTimeout(() => {
-        localStorage.removeItem("idProspecto");
-        localStorage.removeItem("nombre");
-        localStorage.removeItem("apellidoPaterno");
-        localStorage.removeItem("apellidoMaterno");
-      }, 3000);
     }
     sweetAlert();
     setUsuario({
@@ -127,18 +120,12 @@ fetch(`${import.meta.env.VITE_BACKEND_URL}/crearGenerales.php`, {
       beneficiario: "",
       estatus: "",
     });
+    setIdProspecto([])
   })
   .catch(() => {
     sweetAlertcatch();
   });
-     
-  
-    
-      
-    
-
-    
-  };
+};
 
   return (
     <>
