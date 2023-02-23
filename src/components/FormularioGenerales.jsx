@@ -139,7 +139,7 @@ fetch(`${import.meta.env.VITE_BACKEND_URL}/crearGenerales.php`, {
               htmlFor="idVendedor"
               className="text-gray-700 uppercase font-bold text-center"
             >
-              Id_Vendedor:
+              Vendedor:
             </label>
             <input
               type="text"

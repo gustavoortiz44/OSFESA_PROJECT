@@ -16,6 +16,7 @@ const FormularioRecibo = () => {
   const [idRecibos, setIdRecibos] = useState([]);
   const [idContrato, setIdContrato] = useState("");
   const [usuario, setIdUsuario] = useState({});
+  const [idLote, setIdLote] = useState([]);
   useEffect(() => {
     const consultarApi = async () => {
       const url = `${import.meta.env.VITE_BACKEND_URL}/obtenerIdRecibo.php`;
@@ -62,6 +63,26 @@ const FormularioRecibo = () => {
       .then((response) => {
         setIdUsuario(response);
       });
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/consultarLoteManzanaZona.php`, {
+        method: "POST",
+        headers: {
+          "Accept":"application/json",
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          idContrato: idContrato,
+          
+        }),
+        //mode:"no-cors"
+      })
+        .then((responseJson) => responseJson.json())
+        .then((response) => {
+          setIdLote(response);
+        console.log(idLote)
+        });
+       
+        
+      
   };
 
   const handleSubmit = (e) => {
@@ -228,52 +249,60 @@ const FormularioRecibo = () => {
         </div>
 
         <div>
-          <div className="mb-2 p-2 float-left">
-            <label
-              htmlFor="lote"
-              className="text-gray-700 uppercase font-bold text-center"
-            >
-              Lote:
-            </label>
-            <input
-              type="text"
-              placeholder="Lote"
-              id="lote"
-              className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-              value={usuario.LOTE}
-            />
-          </div>
-          <div className="mb-2 p-2 float-left">
-            <label
-              htmlFor="manzana"
-              className="text-gray-700 uppercase font-bold text-center"
-            >
-              MAZANA:
-            </label>
-            <input
-              type="text"
-              placeholder="Manzana Lote"
-              id="manzana"
-              className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-              value={usuario.MANZANA}
-            />
-          </div>
-        </div>
-        <div className="mb-2 p-2 float-left">
+          <div className="mb-2 p-2 mr-12 float-left">
           <label
-            htmlFor="zona"
+            htmlFor="idProyecto"
+            className="text-gray-700 uppercase font-bold text-center"
+          >
+            Lotes:
+          </label>
+          
+             <option  value=""></option>
+        {idLote.map(opcion=>(
+            <option className="text-lef"
+             key={opcion.LOTE}
+            value={opcion.LOTE}>
+                
+           {opcion.LOTE } </option>
+        ))}
+          </div>
+          <div className="mb-2 p-2 mr-12 float-left">
+          <label
+            htmlFor="idProyecto"
+            className="text-gray-700 uppercase font-bold text-center"
+          >
+            Manzana:
+          </label>
+          
+             <option  value=""></option>
+        {idLote.map((opcion,index)=>(
+            <option className="text-lef"
+             key={index}
+            value={opcion.MANZANA}>
+                
+           {opcion.MANZANA} </option>
+        ))}
+          </div>
+          <div className="mb-2 p-2  float-left">
+          <label
+            htmlFor="idProyecto"
             className="text-gray-700 uppercase font-bold text-center"
           >
             Zona:
           </label>
-          <input
-            type="text"
-            placeholder="Zona Lote"
-            id="zona"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-            value={usuario.ZONA}
-          />
+          
+             <option  value=""></option>
+        {idLote.map((opcion,index)=>(
+            <option className="text-lef"
+             key={index}
+            value={opcion.ZONA}>
+                
+           {opcion.ZONA} </option>
+        ))}
+          </div>
+          
         </div>
+        
         <div>
           <div className="mb-2 p-2 float-left">
             <label
@@ -289,7 +318,7 @@ const FormularioRecibo = () => {
               name="fechaRecibo"
               className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
               value={recibo.fechaRecibo}
-              //onChange={handleChange}
+              onChange={handleChange}
             />
           </div>
           <div className="mb-2 p-2 float-left">
@@ -306,9 +335,11 @@ const FormularioRecibo = () => {
               name="fechaInicial"
               className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
               value={usuario.FECHA_INICIAL}
+              onChange={handleChange}
+
             />
           </div>
-          <div className="mb-2 p-2 float-left">
+          <div className="mb-2 p-2  float-left">
             <label
               htmlFor="fechaFinal"
               className="text-gray-700 uppercase font-bold text-center"
