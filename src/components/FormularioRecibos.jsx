@@ -318,7 +318,7 @@ const FormularioRecibo = () => {
               name="fechaRecibo"
               className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
               value={recibo.fechaRecibo}
-              //onChange={handleChange}
+              onChange={handleChange}
             />
           </div>
           <div className="mb-2 p-2 float-left">
@@ -372,7 +372,7 @@ const FormularioRecibo = () => {
               name="monto"
               className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
               value={usuario.TOTAL_A_PAGAR}
-              onChange={handleChangeUsuario}
+              //onChange={handleChangeUsuario}
             />
           </div>
 
