@@ -372,7 +372,7 @@ const FormularioRecibo = () => {
               name="monto"
               className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
               value={usuario.TOTAL_A_PAGAR}
-              //onChange={handleChangeUsuario}
+              
             />
           </div>
 
