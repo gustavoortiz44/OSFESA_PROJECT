@@ -78,7 +78,7 @@ const FormularioRecibo = () => {
         .then((responseJson) => responseJson.json())
         .then((response) => {
           setIdLote(response);
-        console.log(idLote)
+       
         });
        
         
