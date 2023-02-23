@@ -30,7 +30,7 @@ const FormularioRecibo = () => {
   }, [idRecibos]);
   const [recibo, setRecibo] = useState({
    // idRecibo:
-    fechaRecibo: fecha,
+    fechaRecibo:fecha,
     //fechaInicial:'',
     //fechaFinal:'',
     cantidadPagos: "",

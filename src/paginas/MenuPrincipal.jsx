@@ -45,14 +45,14 @@ const MenuDireccion = () => {
       if (!usuario) {
         navigate("/");
       } else {
-        setTimeout(() => {
-          sweetAlertSesion();
-        },600000);
+        
 
         setTimeout(() => {
+          sweetAlertSesion();
           localStorage.clear();
+
           navigate("/");
-        },600000);
+        },3000000);
       }
     };
     sesion();

@@ -12,14 +12,14 @@ const Recibo = () => {
       if (!usuario) {
         navigate("/");
       } else {
-        setTimeout(() => {
-          sweetAlertSesion();
-        },60000000);
+       
 
         setTimeout(() => {
+          sweetAlertSesion();
           localStorage.clear();
+          
           navigate("/");
-        },60000000);
+        },3000000);
       }
     };
     sesion();
