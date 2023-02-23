@@ -79,7 +79,7 @@ const FormularioRecibo = () => {
         .then((response) => {
           setIdLote(response);
         
-        });
+        })
        
         
       
