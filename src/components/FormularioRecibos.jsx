@@ -150,12 +150,7 @@ const FormularioRecibo = () => {
       [e.target.name]: e.target.value,
     });
   };
-  const handleChangeUsuario = (e) => {
-    setRecibo({
-      ...usuario,
-      [e.target.name]: e.target.value,
-    });
-  };
+ 
 
   return (
     <>
@@ -405,7 +400,7 @@ const FormularioRecibo = () => {
             <button
               type="submit"
               className="bg-blue-500 text-center  font-bold text-lg rounded-md shadow-md text-white 
-p-4  ml-2 cursor-pointer hover:bg-blue-400 uppercase "
+              p-4  ml-2 cursor-pointer hover:bg-blue-400 uppercase "
             >
               Generar Recibo
             </button>

@@ -76,7 +76,7 @@ const FormularioGenerarApartado = () => {
       method: "POST",
       headers: {
         "Accept":"application/json",
-        "Content-type": "application/json",
+        "Content-type":"application/json",
       },
       body: JSON.stringify({
         nombre: usuarioProspecto.nombre,
@@ -105,8 +105,8 @@ const FormularioGenerarApartado = () => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/crearApartado.php`, {
       method: "POST",
       headers: {
-        Accept: "application/json",
-        "Content-type": "application/json",
+        "Accept":"application/json",
+        "Content-type":"application/json",
       },
       body: JSON.stringify({
         idProspecto: usuario.id_prospecto,
