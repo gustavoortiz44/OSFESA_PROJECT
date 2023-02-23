@@ -318,7 +318,7 @@ const FormularioRecibo = () => {
               name="fechaRecibo"
               className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
               value={recibo.fechaRecibo}
-              onChange={handleChange}
+              //onChange={handleChange}
             />
           </div>
           <div className="mb-2 p-2 float-left">
@@ -335,7 +335,7 @@ const FormularioRecibo = () => {
               name="fechaInicial"
               className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
               value={usuario.FECHA_INICIAL}
-              onChange={handleChange}
+              //onChange={handleChange}
 
             />
           </div>
@@ -353,7 +353,7 @@ const FormularioRecibo = () => {
               name="fechaFinal"
               className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
               value={usuario.FECHA_PAGO}
-              onChange={handleChange}
+              //onChange={handleChange}
             />
           </div>
         </div>
