@@ -125,6 +125,7 @@ const FormularioGenerarApartado = () => {
         sweetAlert();
         setIdProyecto('')
         setIdLoteSFernando('')
+        setImporte('')
         
         setTimeout(() => {
           const respuesta=confirm('Deseas Agregar Mas Apartados A Este Mismo Usuario')
@@ -232,6 +233,7 @@ const FormularioGenerarApartado = () => {
             name="apellidoMaterno"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={usuario.id_prospecto}
+            disabled
           />
         </div>
         <div className="mb-3 p-3">
@@ -247,6 +249,7 @@ const FormularioGenerarApartado = () => {
             name="apellidoMaterno"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={usuario.estatus}
+            disabled
           />
         </div>
         <div>
@@ -268,6 +271,7 @@ const FormularioGenerarApartado = () => {
                   name="fechaFinal"
                   className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
                   value={fechaApartado}
+                  disabled
                   //onChange={(e) => setFechaApartado(e.target.value)}
                 />
               </div>
@@ -342,7 +346,7 @@ const FormularioGenerarApartado = () => {
                   id="importe"
                   className="border-2 w-full p-2 mt-0 placeholder-gray-500 rounded-md"
                   value={estatus}
-                  onChange={(e) => setEstatus(e.target.value)}
+                 disabled
                 />
               </div>
             </>

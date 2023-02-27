@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,useParams} from "react-router-dom";
 
 import {
   sweetAlertcatch,
@@ -18,11 +18,11 @@ const FormularioApartado = () => {
   const month = newDate.getMonth() + 1;
   const year = newDate.getFullYear();
   const fecha=year+'-'+'0'+month+'-'+date
-  
+  const {idProspecto}=useParams()
  
   const navigate=useNavigate()
 
-  const  [idProspecto,setIdProspecto]=useState(localStorage.getItem("idProspecto"))
+  const  [obtenerIdProspecto,setObtenerIdProspecto]=useState("PR_"+ idProspecto)
   const  [nombre,setNombre]=useState(localStorage.getItem('nombre'))
   const  [apellidoPaterno,setApellidoPaterno]=useState(localStorage.getItem('apellidoPaterno'))
   const  [apellidoMaterno,setApellidoMaterno]=useState(localStorage.getItem('apellidoMaterno'))
@@ -67,7 +67,7 @@ const FormularioApartado = () => {
           "Content-type":"application/json",
         },
         body:JSON.stringify({
-          idProspecto:idProspecto,
+          idProspecto:obtenerIdProspecto,
           fecha:fechaApartado,
           idProyecto:idProyecto,
           idLote:idLoteSFernando,
@@ -90,6 +90,9 @@ const FormularioApartado = () => {
           
           }
           sweetAlert();
+          setIdLoteSFernando('')
+          setImporte('')
+          setIdProyecto('')
          setTimeout(() => {
           const respuesta=confirm('Deseas Agregar Mas Apartados Este Mismo Usuario')
           if(!respuesta){
