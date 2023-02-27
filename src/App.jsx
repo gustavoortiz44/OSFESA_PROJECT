@@ -22,7 +22,7 @@ function App() {
     <Route index='/' element={<Login/>}/>
       <Route path='/nuevoRegistro' element={<NuevoRegistro/>}/>
        <Route path='/generales' element={<Generales/>}/>
-      <Route path='/apartado/:id_prospecto'element={<Apartado/>}/>
+      <Route path='/apartado/:idProspecto'element={<Apartado/>}/>
       <Route path='/recibo'element={<Recibo/>}/>
       <Route path='/generarApartado'element={<GenerarApartado/>}/>
      

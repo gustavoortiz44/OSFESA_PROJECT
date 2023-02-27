@@ -125,6 +125,7 @@ const FormularioApartado = () => {
             id="nombre"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={nombre}
+            disabled
            
     
      
@@ -141,6 +142,7 @@ const FormularioApartado = () => {
             id="apellidoPaterno"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={apellidoPaterno}
+            disabled
            
     
      
@@ -157,6 +159,7 @@ const FormularioApartado = () => {
             id="apellidoMaterno"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={apellidoMaterno}
+            disabled
            
     
      
@@ -175,6 +178,7 @@ const FormularioApartado = () => {
             name="fechaFinal"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
             value={fechaApartado}
+            disabled
             //onChange={e=>setFechaApartado(e.target.value)}
           />
         </div>
@@ -247,7 +251,7 @@ const FormularioApartado = () => {
             id="importe"
             className="border-2 w-full p-2 mt-0 placeholder-gray-500 rounded-md"
             value={estatus}
-            onChange={e=>setEstatus(e.target.value)}
+            disabled
       
      
           />

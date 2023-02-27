@@ -9,6 +9,9 @@ import {
 
 const FormularioGenerales = () => {
   const [idProspecto, setIdProspecto] = useState([]);
+  const [apellidoMaterno, setApellidoMaterno]=useState('')
+  const [telefonoCel, setTelefonoCel]=useState('')
+  const [numeroExt, setNumeroExt]=useState('')
   useEffect(() => {
     const consultarApi = async () => {
       const url = `${import.meta.env.VITE_BACKEND_URL}/obtenerIdProspecto.php`;
@@ -24,21 +27,17 @@ const FormularioGenerales = () => {
 
   const [usuario, setUsuario] = useState({
     //idProspecto: "PR_" + localStorage.getItem("idProspecto"),
-    idVendedor: localStorage.getItem("usuarioId"),
+    idVendedor:localStorage.getItem("usuarioId") ,
     nombre:"",
     apellidoPaterno: "",
-    apellidoMaterno: "",
     nacionalidad: "",
     edad: "",
     estadoCivil: "",
     gradoEstudios: "",
     ocupacion: "",
-    telefonoCel: "",
-
     calle: "",
     numeroInt: "",
-    numeroExt: "",
-    colonia: "",
+   colonia: "",
     estado: "",
     municipio: "",
     beneficiario: "",
@@ -54,7 +53,7 @@ const FormularioGenerales = () => {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-   if (Object.values(usuario).includes("")) {
+   if (Object.keys(usuario).includes("")) {
       return sweetAlertError();
     } 
     
@@ -66,19 +65,19 @@ fetch(`${import.meta.env.VITE_BACKEND_URL}/crearGenerales.php`, {
   },
   body: JSON.stringify({
     idProspecto:"PR_" + localStorage.getItem("idProspecto"),
-    idVendedor: usuario.idVendedor,
+    idVendedor: localStorage.getItem("usuarioId"),
     nombre: usuario.nombre,
     apellidoPaterno: usuario.apellidoPaterno,
-    apellidoMaterno: usuario.apellidoMaterno,
+    apellidoMaterno:apellidoMaterno,
     nacionalidad: usuario.nacionalidad,
     edad: usuario.edad,
     estadoCivil: usuario.estadoCivil,
     gradoEstudios: usuario.gradoEstudios,
     ocupacion: usuario.ocupacion,
-    telefonoCel: usuario.telefonoCel,
+    telefonoCel:telefonoCel,
     calle: usuario.calle,
     numeroInt: usuario.numeroInt,
-    numeroExt: usuario.numeroExt,
+    numeroExt:numeroExt,
     colonia: usuario.colonia,
     estado: usuario.estado,
     municipio: usuario.municipio,
@@ -91,12 +90,12 @@ fetch(`${import.meta.env.VITE_BACKEND_URL}/crearGenerales.php`, {
     if (response.status == true) {
       response.json();
     } else if (usuario.estatus == "APARTADO") {
-      localStorage.setItem("idProspecto", usuario.idProspecto);
+      localStorage.setItem("idProspecto", idProspecto);
       localStorage.setItem("nombre", usuario.nombre);
       localStorage.setItem("apellidoPaterno", usuario.apellidoPaterno);
-      localStorage.setItem("apellidoMaterno", usuario.apellidoPaterno);
+      localStorage.setItem("apellidoMaterno", apellidoMaterno);
       setTimeout(() => {
-        navigate(`/apartado/${usuario.idProspecto}`);
+        navigate(`/apartado/${idProspecto}`);
       }, 1000);
     }
     sweetAlert();
@@ -121,6 +120,9 @@ fetch(`${import.meta.env.VITE_BACKEND_URL}/crearGenerales.php`, {
       estatus: "",
     });
     setIdProspecto([])
+    setApellidoMaterno('')
+    setTelefonoCel('')
+    setNumeroExt('')
   })
   .catch(() => {
     sweetAlertcatch();
@@ -148,6 +150,7 @@ fetch(`${import.meta.env.VITE_BACKEND_URL}/crearGenerales.php`, {
               name="idVendedor"
               className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
               value={usuario.idVendedor}
+              disabled
             />
           </div>
           <div></div>
@@ -204,8 +207,8 @@ fetch(`${import.meta.env.VITE_BACKEND_URL}/crearGenerales.php`, {
               id="apellidoMaterno"
               name="apellidoMaterno"
               className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-              value={usuario.apellidoMaterno}
-              onChange={handleChange}
+              value={apellidoMaterno}
+              onChange={e=>setApellidoMaterno(e.target.value)}
             />
           </div>
         </div>
@@ -313,8 +316,8 @@ fetch(`${import.meta.env.VITE_BACKEND_URL}/crearGenerales.php`, {
               id="telefonoCel"
               name="telefonoCel"
               className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-              value={usuario.telefonoCel}
-              onChange={handleChange}
+              value={telefonoCel}
+              onChange={e=>setTelefonoCel(e.target.value)}
             />
           </div>
         </div>
@@ -367,8 +370,8 @@ fetch(`${import.meta.env.VITE_BACKEND_URL}/crearGenerales.php`, {
               id="numeroExt"
               name="numeroExt"
               className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-              value={usuario.numeroExt}
-              onChange={handleChange}
+              value={numeroExt}
+              onChange={e=>setNumeroExt(e.target.value)}
             />
           </div>
           <div className="mb-3 p-3 float-left">

@@ -12,11 +12,11 @@ const FormularioRecibo = () => {
   const month = newDate.getMonth() + 1;
   const year = newDate.getFullYear();
   const fecha = year + "-" + "0" + month + "-" + date;
-
   const [idRecibos, setIdRecibos] = useState([]);
   const [idContrato, setIdContrato] = useState("");
   const [usuario, setIdUsuario] = useState({});
   const [idLote, setIdLote] = useState([]);
+ 
   useEffect(() => {
     const consultarApi = async () => {
       const url = `${import.meta.env.VITE_BACKEND_URL}/obtenerIdRecibo.php`;
@@ -31,7 +31,7 @@ const FormularioRecibo = () => {
   }, [idRecibos]);
   const [recibo, setRecibo] = useState({
    // idRecibo:
-    fechaRecibo:fecha,
+   fechaRecibo:fecha,
     //fechaInicial:'',
     //fechaFinal:'',
     cantidadPagos: "",
@@ -105,7 +105,7 @@ const FormularioRecibo = () => {
         nombre: usuario.NOMBRE,
         apellidoPaterno: usuario.APELLIDO_PATERNO,
         apellidoMaterno: usuario.APELLIDO_MATERNO,
-        fechaRecibo: recibo.fechaRecibo,
+       fechaRecibo: recibo.fechaRecibo,
         fechaInicial: usuario.FECHA_INICIAL,
         fechaFinal: usuario.FECHA_PAGO,
         cantidadPagos: recibo.cantidadPagos,
@@ -122,7 +122,7 @@ const FormularioRecibo = () => {
       sweetAlert();
       setIdContrato("");
       setRecibo({
-        fechaRecibo: "",
+        fechaRecibo:fecha,
         fechaInicial: "",
         fechaFinal: "",
         cantidadPagos: "",
@@ -142,6 +142,7 @@ const FormularioRecibo = () => {
         TOTAL_A_PAGAR: "",
       });
       setIdRecibos([]);
+      setIdLote([])
     });
   };
   const handleChange = (e) => {
@@ -207,6 +208,7 @@ const FormularioRecibo = () => {
               placeholder="Nombre"
               className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
               value={usuario.NOMBRE}
+              disabled
             />
           </div>
           <div className="mb-2 p-2 float-left">
@@ -223,6 +225,7 @@ const FormularioRecibo = () => {
               name="apellidoPaterno"
               className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
               value={usuario.APELLIDO_PATERNO}
+              disabled
             />
           </div>
           <div className="mb-2 p-2 float-left">
@@ -239,10 +242,88 @@ const FormularioRecibo = () => {
               name="apellidoMaterno"
               className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
               value={usuario.APELLIDO_MATERNO}
+              disabled
             />
           </div>
         </div>
 
+        
+        <div>
+          <div className="mb-2 p-2 float-left">
+            <label
+              htmlFor="fechaRecibo"
+              className="text-gray-700 uppercase font-bold text-center"
+            >
+              Fecha Recibo:
+            </label>
+            <input
+              type="text"
+              placeholder="Ingrese Fecha de Recibo Correcta"
+              id="fechaRecibo"
+              name="fechaRecibo"
+              className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
+              value={recibo.fechaRecibo}
+              onChange={handleChange}
+              disabled
+            />
+          </div>
+          <div className="mb-2 p-2 float-left">
+            <label
+              htmlFor="fechaInicial"
+              className="text-gray-700 uppercase font-bold text-center"
+            >
+              Fecha Inicial:
+            </label>
+            <input
+              type="text"
+              placeholder="Ingrese Fecha Final de Recibo Correcta"
+              id="fechaInicial"
+              name="fechaInicial"
+              className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
+              value={usuario.FECHA_INICIAL}
+              disabled
+
+            />
+          </div>
+          
+          <div className="mb-2 p-2 float-left">
+            <label
+              htmlFor="fechaFinal"
+              className="text-gray-700 uppercase font-bold text-center"
+            >
+              Fecha Final:
+            </label>
+            <input
+              type="text"
+              placeholder="Ingrese Fecha Final de Recibo Correcta"
+              id="fechaFinal"
+              name="fechaFinal"
+              className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
+              value={usuario.FECHA_PAGO}
+              disabled
+            />
+          </div>
+        </div>
+        <div>
+          <div className="mb-2 p-2 float-left">
+            <label
+              htmlFor="monto"
+              className="text-gray-700 uppercase font-bold text-center"
+            >
+              Monto $:
+            </label>
+            <input
+              type="number"
+              placeholder="Ingrese Monto Correcto"
+              id="monto"
+              name="monto"
+              className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
+              value={usuario.TOTAL_A_PAGAR}
+              disabled
+            />
+          </div>
+          </div>
+          
         <div>
           <div className="mb-2 p-2 mr-12 float-left">
           <label
@@ -297,79 +378,6 @@ const FormularioRecibo = () => {
           </div>
           
         </div>
-        
-        <div>
-          <div className="mb-2 p-2 float-left">
-            <label
-              htmlFor="fechaRecibo"
-              className="text-gray-700 uppercase font-bold text-center"
-            >
-              Fecha Recibo:
-            </label>
-            <input
-              type="text"
-              placeholder="Ingrese Fecha de Recibo Correcta"
-              id="fechaRecibo"
-              name="fechaRecibo"
-              className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-              value={recibo.fechaRecibo}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="mb-2 p-2 float-left">
-            <label
-              htmlFor="fechaInicial"
-              className="text-gray-700 uppercase font-bold text-center"
-            >
-              Fecha Inicial:
-            </label>
-            <input
-              type="text"
-              placeholder="Ingrese Fecha Final de Recibo Correcta"
-              id="fechaInicial"
-              name="fechaInicial"
-              className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-              value={usuario.FECHA_INICIAL}
-              //onChange={handleChange}
-
-            />
-          </div>
-          <div className="mb-2 p-2  float-left">
-            <label
-              htmlFor="fechaFinal"
-              className="text-gray-700 uppercase font-bold text-center"
-            >
-              Fecha Final:
-            </label>
-            <input
-              type="text"
-              placeholder="Ingrese Fecha Final de Recibo Correcta"
-              id="fechaFinal"
-              name="fechaFinal"
-              className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-              value={usuario.FECHA_PAGO}
-              //onChange={handleChange}
-            />
-          </div>
-        </div>
-        <div>
-          <div className="mb-2 p-2 float-left">
-            <label
-              htmlFor="monto"
-              className="text-gray-700 uppercase font-bold text-center"
-            >
-              Monto $:
-            </label>
-            <input
-              type="number"
-              placeholder="Ingrese Monto Correcto"
-              id="monto"
-              name="monto"
-              className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-              value={usuario.TOTAL_A_PAGAR}
-              //onChange={handleChangeUsuario}
-            />
-          </div>
 
           <div className="mb-2 p-2 float-none">
             <textarea
@@ -378,12 +386,14 @@ const FormularioRecibo = () => {
               id="observaciones"
               name="observaciones"
               className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-              value={recibo.observaciones}
+              value={recibo.observaciones.toUpperCase}
+           
               onChange={handleChange}
             />
           </div>
-        </div>
-        <div></div>
+   
+     
+     
 
         <div className="flex justify-center">
           <button
