@@ -96,6 +96,20 @@ const MenuDireccion = () => {
           Generar Apartado
         </Link>
         <Link
+           to="/agenda"
+           className="bg-blue-500 text-center  font-bold text-lg rounded-md shadow-md text-white align-middle block 
+           w-full p-3 mt-3  cursor-pointer hover:bg-blue-400 uppercase "
+         >
+           Agenda
+         </Link>
+         <Link
+           to="/contrato"
+           className="bg-blue-500 text-center  font-bold text-lg rounded-md shadow-md text-white align-middle block 
+           w-full p-3 mt-3 cursor-pointer hover:bg-blue-400 uppercase "
+         >
+           Contrato
+         </Link>
+        <Link
           to="/recibo"
           className="bg-blue-500 text-center  font-bold text-lg rounded-md shadow-md text-white align-middle block 
           w-full p-3 mt-3  cursor-pointer hover:bg-blue-400 uppercase "
@@ -138,6 +152,14 @@ const MenuDireccion = () => {
          >
            Generar Apartado
          </Link>
+         <Link
+           to="/agenda"
+           className="bg-blue-500 text-center  font-bold text-lg rounded-md shadow-md text-white align-middle block 
+           w-full p-3  cursor-pointer hover:bg-blue-400 uppercase "
+         >
+           Agenda
+         </Link>
+         
          <Link
            to="/recibo"
            className="bg-blue-500 text-center  font-bold text-lg rounded-md shadow-md text-white align-middle block 

@@ -386,7 +386,7 @@ const FormularioRecibo = () => {
               id="observaciones"
               name="observaciones"
               className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-              value={recibo.observaciones.toUpperCase}
+              value={recibo.observaciones}
            
               onChange={handleChange}
             />

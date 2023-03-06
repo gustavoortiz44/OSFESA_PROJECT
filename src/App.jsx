@@ -7,6 +7,8 @@ import Recibo from './paginas/Recibo'
 import GenerarApartado from './paginas/GenerarApartado'
 import MenuPrincipal from './paginas/MenuPrincipal'
 import{BrowserRouter,Routes,Route}from 'react-router-dom'
+import Agenda from './paginas/Agenda'
+import  Contrato from './paginas/Contrato'
 
 
 
@@ -25,7 +27,8 @@ function App() {
       <Route path='/apartado/:idProspecto'element={<Apartado/>}/>
       <Route path='/recibo'element={<Recibo/>}/>
       <Route path='/generarApartado'element={<GenerarApartado/>}/>
-     
+      <Route path='/agenda'element={<Agenda/>}/>
+      <Route path='/contrato'element={<Contrato/>}/>
  
       <Route path='/menu'element={<MenuPrincipal/>}/>
 

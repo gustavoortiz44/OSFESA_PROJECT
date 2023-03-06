@@ -102,10 +102,21 @@ const sweetAlerCLienteAutenticacion=()=>{
       showConfirmButton: false,
       timer: 1500
     })
-    
+   
 
 
 }
+const sweetAgenda=()=>{
+  swal.fire({  
+    position: 'center',
+    icon: 'error',
+    title: ' NOMBRE ES OBLIGATORIO',
+    showConfirmButton: false,
+    timer: 1500
+  })
+
+}
+
 
   export {  
     sweetAlert,
@@ -117,7 +128,8 @@ const sweetAlerCLienteAutenticacion=()=>{
     sweetAlerApartado,
     sweetAlerGenerarApartado,
     sweetAlerCLienteNoEncontrado,
-    sweetAlerCLienteAutenticacion
+    sweetAlerCLienteAutenticacion,
+    sweetAgenda
 
   
   }

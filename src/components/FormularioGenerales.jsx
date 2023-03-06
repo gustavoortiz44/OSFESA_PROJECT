@@ -90,7 +90,7 @@ fetch(`${import.meta.env.VITE_BACKEND_URL}/crearGenerales.php`, {
     if (response.status == true) {
       response.json();
     } else if (usuario.estatus == "APARTADO") {
-      localStorage.setItem("idProspecto", idProspecto);
+     
       localStorage.setItem("nombre", usuario.nombre);
       localStorage.setItem("apellidoPaterno", usuario.apellidoPaterno);
       localStorage.setItem("apellidoMaterno", apellidoMaterno);
