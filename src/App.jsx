@@ -9,6 +9,10 @@ import MenuPrincipal from './paginas/MenuPrincipal'
 import{BrowserRouter,Routes,Route}from 'react-router-dom'
 import Agenda from './paginas/Agenda'
 import  Contrato from './paginas/Contrato'
+import Disponibilidad from './paginas/Disponibilidad'
+import Reporte_50_50 from './paginas/Reporte_50_50'
+import ReportePagos from './paginas/ReportePagos'
+import EstatusLote from './paginas/EstatusLote'
 
 
 
@@ -29,8 +33,12 @@ function App() {
       <Route path='/generarApartado'element={<GenerarApartado/>}/>
       <Route path='/agenda'element={<Agenda/>}/>
       <Route path='/contrato'element={<Contrato/>}/>
- 
       <Route path='/menu'element={<MenuPrincipal/>}/>
+      <Route path='/disponibilidad'element={<Disponibilidad/>}/>
+      <Route path='/reporte_50_50'element={<Reporte_50_50/>}/>
+      <Route path='/reportePagos'element={<ReportePagos/>}/>
+      <Route path='/estatusLote'element={<EstatusLote/>}/>
+
 
     </Routes>
     </BrowserRouter>

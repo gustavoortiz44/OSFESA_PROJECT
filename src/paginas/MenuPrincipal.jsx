@@ -10,6 +10,7 @@ const MenuDireccion = () => {
   const usuarioNivel=localStorage.getItem("nivel")
   const [idProspecto, setIdProspecto]=useState([])
   const [idRecibos, setIdRecibos]=useState([])
+  
   useEffect(()=>{
    const consultarApi = async () => {
  
@@ -116,19 +117,33 @@ const MenuDireccion = () => {
         >
           Recibo
         </Link>
-        <a
-          href="https://grupoosfesa.com/index/REPORTE%20PAGOS%202023.xlsx"
+        <Link to="/disponibilidad"
           className="bg-blue-500 text-center  font-bold text-lg rounded-md shadow-md text-white align-middle block 
-          w-full p-3 mt-3  cursor-pointer hover:bg-blue-400 uppercase "
-        >
-          Reporte Admin
-        </a>
+          w-full p-3 mt-3  cursor-pointer hover:bg-blue-400 uppercase ">
+        Disponibilidad
+        </Link>
+        <Link to="/reporte_50_50"
+          className="bg-blue-500 text-center  font-bold text-lg rounded-md shadow-md text-white align-middle block 
+          w-full p-3 mt-3  cursor-pointer hover:bg-blue-400 uppercase ">
+        Reporte 50/50
+        </Link>
+        <Link to="/reportePagos"
+          className="bg-blue-500 text-center  font-bold text-lg rounded-md shadow-md text-white align-middle block 
+          w-full p-3 mt-3  cursor-pointer hover:bg-blue-400 uppercase ">
+        Reporte Pagos
+        </Link>
+        <Link to="/estatusLote"
+          className="bg-blue-500 text-center  font-bold text-lg rounded-md shadow-md text-white align-middle block 
+          w-full p-3 mt-3  cursor-pointer hover:bg-blue-400 uppercase ">
+        Esatus Lotes
+        </Link>
+       
         <a
           href="https://grupoosfesa.com/index/CROQUIS_PSFND_DISPONIBLES.xlsx"
           className="bg-blue-500 text-center  font-bold text-lg rounded-md shadow-md text-white align-middle block 
           w-full p-3 mt-3  cursor-pointer hover:bg-blue-400 uppercase "
         >
-          Croquis
+          Reportes.xlsx Y Croquis
         </a>
         
         
@@ -155,7 +170,7 @@ const MenuDireccion = () => {
          <Link
            to="/agenda"
            className="bg-blue-500 text-center  font-bold text-lg rounded-md shadow-md text-white align-middle block 
-           w-full p-3  cursor-pointer hover:bg-blue-400 uppercase "
+           w-full p-3 mt-3  cursor-pointer hover:bg-blue-400 uppercase "
          >
            Agenda
          </Link>
