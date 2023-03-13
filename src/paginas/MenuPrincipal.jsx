@@ -183,7 +183,7 @@ const MenuDireccion = () => {
            Recibo
          </Link>
          <a
-          href="https://grupoosfesa.com/index/CROQUIS_PSFND_DISPONIBLES.xlsx"
+          href="https://grupoosfesa.com/index/DISPONIBILIDAD_SAN_FERNANDO.xlsx"
           className="bg-blue-500 text-center  font-bold text-lg rounded-md shadow-md text-white align-middle block 
           w-full p-3 mt-3  cursor-pointer hover:bg-blue-400 uppercase "
         >

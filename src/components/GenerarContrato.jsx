@@ -28,7 +28,7 @@ const Contrato = () => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/buscarDatosContrato.php`, {
       method: "POST",
       headers: {
-        Accept: "application/json",
+        "Accept":"application/json",
         "Content-type": "application/json",
       },
       body: JSON.stringify({
@@ -68,8 +68,8 @@ const Contrato = () => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/obtenerZonaContrato.php`, {
       method: "POST",
       headers: {
-        Accept: "application/json",
-        "Content-type": "application/json",
+        "Accept":"application/json",
+        "Content-type":"application/json",
       },
       body: JSON.stringify({
         nombre: usuario.nombre,
@@ -115,7 +115,7 @@ const Contrato = () => {
             type="text"
             id="nombre"
             name="nombre"
-            className="w-32 mr-1 placeholder-gray-500 rounded-md uppercase text-left"
+            className="w-44 mr-1 placeholder-gray-500 rounded-md uppercase text-center"
             placeholder="Nombre"
             
             value={usuario.nombre}
@@ -125,7 +125,7 @@ const Contrato = () => {
             type="text"
             id="apellidoPaterno"
             name="apellidoPaterno"
-            className=" w-32 mr-1 placeholder-gray-500 rounded-md uppercase text-left"
+            className=" w-36 mr-1 placeholder-gray-500 rounded-md uppercase text-center"
             placeholder="Apellido Paterno"
             value={usuario.apellidoPaterno}
             onChange={handleChangeUsuario}
@@ -134,7 +134,7 @@ const Contrato = () => {
             type="text"
             id="apellidoMaterno"
             name="apellidoMaterno"
-            className="w-36 mr-1 placeholder-gray-500 rounded-md uppercase text-left "
+            className="w-36 mr-1 placeholder-gray-500 rounded-md uppercase text-center "
             placeholder="Apellido Materno"
             value={apellidoMaterno}
             onChange={(e) => setApellidoMaterno(e.target.value)}
@@ -263,7 +263,7 @@ const Contrato = () => {
             type="text"
             id="calle"
             name="calle"
-            className=" w-72 mt-1 placeholder-gray-500 rounded-md uppercase text-left"
+            className=" w-80 mt-1 placeholder-gray-500 rounded-md uppercase text-left"
             placeholder="Calle"
             value={datos.DIRECCION}
             disabled
@@ -273,7 +273,7 @@ const Contrato = () => {
             type="text"
             id="colonia"
             name="colonia"
-            className=" w-15  mt-1 placeholder-gray-500 rounded-md uppercase text-center"
+            className=" w-72  mt-1 placeholder-gray-500 rounded-md uppercase text-center"
             placeholder="Colonia"
             value={datos.COLONIA}
             disabled
@@ -575,7 +575,7 @@ const Contrato = () => {
           una de las partes quienes manifiestan estar enterados del contenido
           del mismo.
         </p>
-        <h3  className="text-center text-xl uppercase font-sans mt-2">Promitente Vendedor</h3>
+        <h3  className="text-center text-xl uppercase font-sans mt-52">Promitente Vendedor</h3>
         <p className="text-center font-normal uppercase mt-20">Oscar Fernando Ortíz Contreras</p>
         <h3  className="text-center text-xl uppercase font-sans mt-2">Promitente Comprador</h3>
         <p className="text-center font-normal uppercase mt-20">{usuario.nombre+" "+usuario.apellidoPaterno+" "+apellidoMaterno}</p>

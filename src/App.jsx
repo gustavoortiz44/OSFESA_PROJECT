@@ -32,12 +32,12 @@ function App() {
       <Route path='/recibo'element={<Recibo/>}/>
       <Route path='/generarApartado'element={<GenerarApartado/>}/>
       <Route path='/agenda'element={<Agenda/>}/>
-      <Route path='/contrato'element={<Contrato/>}/>
       <Route path='/menu'element={<MenuPrincipal/>}/>
       <Route path='/disponibilidad'element={<Disponibilidad/>}/>
       <Route path='/reporte_50_50'element={<Reporte_50_50/>}/>
       <Route path='/reportePagos'element={<ReportePagos/>}/>
       <Route path='/estatusLote'element={<EstatusLote/>}/>
+      <Route path='/contrato'element={<Contrato/>}/>
 
 
     </Routes>
