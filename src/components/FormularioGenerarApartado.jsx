@@ -26,6 +26,7 @@ const FormularioGenerarApartado = () => {
   const [idLoteSFernando, setIdLoteSFernando] = useState("");
   const [idLoteSanFernado, setIdLoteSanFernando] = useState([]);
   const [usuario, setUsuario] = useState({});
+  const [boton1, setBoton1] =useState(true);
   
   useEffect(() => {
     const consultarApi = async () => {
@@ -89,9 +90,10 @@ const FormularioGenerarApartado = () => {
 
       .then((response) => {
         setUsuario(response);
-
+        setBoton1(false)
         
       })
+
       .catch(() => {
         sweetAlerCLienteNoEncontrado();
       });
@@ -145,12 +147,14 @@ const FormularioGenerarApartado = () => {
             setIdProyecto('')
             setIdLoteSFernando(''),
             setImporte('')
+            setBoton1(true)
            
          
           
           }},2000);
         
       })
+      
       .catch(() => {
         sweetAlertcatch();
       });
@@ -159,7 +163,7 @@ const FormularioGenerarApartado = () => {
   const handleChange = (e) => {
     setUsuarioProspecto({
       ...usuarioProspecto,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value.trim().toUpperCase(),
     });
   };
 
@@ -182,7 +186,7 @@ const FormularioGenerarApartado = () => {
             id="nombre"
             name="nombre"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-            value={usuarioProspecto.nombre.trimStart()}
+            value={usuarioProspecto.nombre}
             onChange={handleChange}
           />
         </div>
@@ -199,7 +203,7 @@ const FormularioGenerarApartado = () => {
             id="apellidoPaterno"
             name="apellidoPaterno"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-            value={usuarioProspecto.apellidoPaterno.trimStart()}
+            value={usuarioProspecto.apellidoPaterno}
             onChange={handleChange}
           />
         </div>
@@ -216,7 +220,7 @@ const FormularioGenerarApartado = () => {
             id="apellidoMaterno"
             name="apellidoMaterno"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-            value={usuarioProspecto.apellidoMaterno.trimStart()}
+            value={usuarioProspecto.apellidoMaterno}
             onChange={handleChange}
           />
         </div>
@@ -353,14 +357,14 @@ const FormularioGenerarApartado = () => {
           )}
         </div>
         <div className="flex justify-center">
-          <button
+         {boton1 &&  <button
             onClick={handleSubmitConsultar}
             type="button"
             className="bg-blue-500 text-center  font-bold text-lg rounded-md shadow-md text-white 
              p-4 cursor-pointer hover:bg-blue-400 uppercase "
           >
             Buscar Datos Cliente
-          </button>
+          </button>}
           {!usuario.id_prospecto ? (
             ""
           ) : (

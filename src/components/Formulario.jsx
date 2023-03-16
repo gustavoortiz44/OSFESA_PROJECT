@@ -72,8 +72,8 @@ const Formulario = () => {
             id="userId"
             name="usuarioId"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-            value={usuarioId.trim()}
-            onChange={(e) => setUserId(e.target.value)}
+            value={usuarioId}
+            onChange={(e) => setUserId(e.target.value.trim().toUpperCase())}
           />
         </div>
 
@@ -90,8 +90,8 @@ const Formulario = () => {
             id="nombre"
             name="nombreUsuario"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-            value={nombreUsuario.trimStart()}
-            onChange={(e) => setNombre(e.target.value)}
+            value={nombreUsuario}
+            onChange={(e) => setNombre(e.target.value.trim().toUpperCase())}
           />
         </div>
         <div className="mb-3 p-3">
@@ -101,7 +101,7 @@ const Formulario = () => {
           >
             Nivel:
           </label>
-          <select value={levelUser} onChange={e=>setLeveL(e.target.value)} className='uppercase font-bolt
+          <select value={levelUser} onChange={e=>setLeveL(e.target.value.trim().toUpperCase())} className='uppercase font-bolt
           shadow-md rounded-md'>
             <option value=''>--Selecciona el Nivel Correcto--</option>
             <option>DIRECCION</option>
@@ -125,8 +125,8 @@ const Formulario = () => {
             id="password"
             name="passwordUser"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-            value={passwordUser.trim()}
-            onChange={(e) => setPassword(e.target.value)}
+            value={passwordUser}
+            onChange={(e) => setPassword(e.target.value.trim().toUpperCase())}
           />
         </div>
         <input

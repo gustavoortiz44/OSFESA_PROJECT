@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+
 import { useState, useEffect } from "react";
 
 import {
@@ -46,12 +46,10 @@ const FormularioGenerales = () => {
   const handleChange = (e) => {
     setUsuario({
       ...usuario,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value.trim().toUpperCase(),
     });
   };
-  console.log();
-  const navigate = useNavigate();
-  const handleSubmit = (e) => {
+  console.log();  const handleSubmit = (e) => {
     e.preventDefault();
    if (Object.keys(usuario).includes("")) {
       return sweetAlertError();
@@ -82,21 +80,13 @@ fetch(`${import.meta.env.VITE_BACKEND_URL}/crearGenerales.php`, {
     estado: usuario.estado,
     municipio: usuario.municipio,
     beneficiario: usuario.beneficiario,
-    estatus: usuario.estatus,
+   
   }),
   mode: "no-cors",
 })
   .then((response) => {
     if (response.status == true) {
       response.json();
-    } else if (usuario.estatus == "APARTADO") {
-     
-      localStorage.setItem("nombre", usuario.nombre);
-      localStorage.setItem("apellidoPaterno", usuario.apellidoPaterno);
-      localStorage.setItem("apellidoMaterno", apellidoMaterno);
-      setTimeout(() => {
-        navigate(`/apartado/${idProspecto}`);
-      }, 1000);
     }
     sweetAlert();
     setUsuario({
@@ -117,7 +107,7 @@ fetch(`${import.meta.env.VITE_BACKEND_URL}/crearGenerales.php`, {
       estado: "",
       municipio: "",
       beneficiario: "",
-      estatus: "",
+      
     });
     setIdProspecto([])
     setApellidoMaterno('')
@@ -153,7 +143,7 @@ fetch(`${import.meta.env.VITE_BACKEND_URL}/crearGenerales.php`, {
               disabled
             />
           </div>
-          <div></div>
+        
         </div>
         <div>
           <h3 className="text-center font-normal text-xl font-serif mt-0 p-3 uppercase">
@@ -172,7 +162,7 @@ fetch(`${import.meta.env.VITE_BACKEND_URL}/crearGenerales.php`, {
               id="nombre"
               name="nombre"
               className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-              value={usuario.nombre.trimStart()}
+              value={usuario.nombre}
               onChange={handleChange}
             />
           </div>
@@ -189,7 +179,7 @@ fetch(`${import.meta.env.VITE_BACKEND_URL}/crearGenerales.php`, {
               id="apellidoPaterno"
               name="apellidoPaterno"
               className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
-              value={usuario.apellidoPaterno.trim()}
+              value={usuario.apellidoPaterno}
               onChange={handleChange}
             />
           </div>
@@ -208,7 +198,7 @@ fetch(`${import.meta.env.VITE_BACKEND_URL}/crearGenerales.php`, {
               name="apellidoMaterno"
               className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
               value={apellidoMaterno}
-              onChange={e=>setApellidoMaterno(e.target.value)}
+              onChange={e=>setApellidoMaterno(e.target.value.trim().toUpperCase())}
             />
           </div>
         </div>
@@ -317,7 +307,7 @@ fetch(`${import.meta.env.VITE_BACKEND_URL}/crearGenerales.php`, {
               name="telefonoCel"
               className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
               value={telefonoCel}
-              onChange={e=>setTelefonoCel(e.target.value)}
+              onChange={e=>setTelefonoCel(e.target.value.trim())}
             />
           </div>
         </div>
@@ -371,7 +361,7 @@ fetch(`${import.meta.env.VITE_BACKEND_URL}/crearGenerales.php`, {
               name="numeroExt"
               className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
               value={numeroExt}
-              onChange={e=>setNumeroExt(e.target.value)}
+              onChange={e=>setNumeroExt(e.target.value.trim())}
             />
           </div>
           <div className="mb-3 p-3 float-left">
@@ -445,26 +435,7 @@ fetch(`${import.meta.env.VITE_BACKEND_URL}/crearGenerales.php`, {
               onChange={handleChange}
             />
           </div>
-          <div className="mb-3 p-3 float-left">
-            <label
-              htmlFor="estatus"
-              className="text-gray-700 uppercase font-bold text-center"
-            >
-              Estatus:
-            </label>
-            <select
-              onChange={handleChange}
-              value={usuario.estatus}
-              id="estatus"
-              name="estatus"
-              className="uppercase font-bolt
-          shadow-md rounded-md"
-            >
-              <option value="">--Seleccione Estatus--</option>
-              <option>APARTADO</option>
-              <option>PROSPECTO</option>
-            </select>
-          </div>
+          
         </div>
 
         <input

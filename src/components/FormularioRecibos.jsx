@@ -16,6 +16,7 @@ const FormularioRecibo = () => {
   const [idContrato, setIdContrato] = useState("");
   const [usuario, setIdUsuario] = useState({});
   const [idLote, setIdLote] = useState([]);
+  const [boton1, setBoton1] = useState(true);
  
   useEffect(() => {
     const consultarApi = async () => {
@@ -50,7 +51,7 @@ const FormularioRecibo = () => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/crearRecibo.php`, {
       method: "POST",
       headers: {
-        Accept: "application/json",
+       "Accept":"application/json",
         "Content-type": "application/json",
       },
       body: JSON.stringify({
@@ -78,8 +79,10 @@ const FormularioRecibo = () => {
         .then((responseJson) => responseJson.json())
         .then((response) => {
           setIdLote(response);
+
         
         })
+        setBoton1(false)
        
         
       
@@ -143,12 +146,13 @@ const FormularioRecibo = () => {
       });
       setIdRecibos([]);
       setIdLote([])
+      setBoton1(true)
     });
   };
   const handleChange = (e) => {
     setRecibo({
       ...recibo,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value.trim().toUpperCase(),
     });
   };
  
@@ -168,7 +172,7 @@ const FormularioRecibo = () => {
               Contrato:
             </label>
             <input
-              type="idContrato"
+              type="text"
               placeholder="Ingrese Numero de Contrato"
               id="idContrato"
               className="border-2 w-80 p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
@@ -203,7 +207,7 @@ const FormularioRecibo = () => {
               Nombre:
             </label>
             <input
-              type="nombre"
+              type="text"
               id="nombre"
               placeholder="Nombre"
               className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
@@ -396,7 +400,8 @@ const FormularioRecibo = () => {
      
 
         <div className="flex justify-center">
-          <button
+          {
+            boton1 && <button
             onClick={handleSubmitId}
             type="button"
             className="bg-blue-500 text-center  font-bold text-lg rounded-md shadow-md text-white 
@@ -404,6 +409,7 @@ const FormularioRecibo = () => {
           >
             Buscar Datos Cliente
           </button>
+          }
           {!usuario.ID_CLIENTE ? (
             ""
           ) : (

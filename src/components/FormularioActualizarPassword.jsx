@@ -6,7 +6,7 @@ import {
 
 } from "../../sweetalert2/Alerta";
 
-const FormularioLogin = () => {
+const FormularioActualizarContraseña = () => {
   const [usuarioId, setUserId] = useState("");
   const [passwordUser, setPassword] = useState("");
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const FormularioLogin = () => {
       return sweetAlertError();
     }
 
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/login.php`,{
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/actualizarContraseña.php`,{
       method:"POST",
       headers:{
         "Accept":"application/json",
@@ -36,24 +36,12 @@ const FormularioLogin = () => {
     .then(responseJson=>responseJson.json())
    
       .then((response) => {
-        if (response.recepcion==='recepcion') {
+        if (response.status==true) {
+            navigate('/login')
          
-      localStorage.setItem("nivel",response.recepcion)
-          localStorage.setItem("usuarioId",(usuarioId))
-    
-         navigate('/menu')
+     
           
-        }else if(response.direccion==='direccion'){
-          localStorage.setItem("nivel",response.direccion)
-          localStorage.setItem("usuarioId",(usuarioId))
-          
-         navigate('/menu')
-        
-
-        }else if(passwordUser!=password && usuarioId!=userId){
-         sweetAlerCLienteAutenticacion()
         }
-       
            
       }).catch((error) => {
         console.log(error);
@@ -71,7 +59,7 @@ const FormularioLogin = () => {
             htmlFor="userId"
             className="text-gray-700 uppercase font-bold text-center"
           >
-            Usuario:
+           Nomvre Usuario:
           </label>
           <input
             type="text"
@@ -89,11 +77,11 @@ const FormularioLogin = () => {
             htmlFor="password"
             className="text-gray-700 uppercase font-bold text-center"
           >
-            Password:
+            Nuevo Password:
           </label>
           <input
             type="password"
-            placeholder="Ingrese Password Correcto"
+            placeholder="Ingrese Su Nuevo Password"
             id="password"
             name="password"
             className="border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md uppercase"
@@ -107,10 +95,10 @@ const FormularioLogin = () => {
           type="submit"
           className="bg-blue-500 text-center  font-bold text-lg rounded-md shadow-md text-white align-middle
             w-full p-3  cursor-pointer hover:bg-blue-400 uppercase "
-          value="Iniciar Sesion"
+          value="Actualizar Contraseña"
         />
       </form>
     </>
   );
 };
-export default FormularioLogin;
+export default FormularioActualizarContraseña;

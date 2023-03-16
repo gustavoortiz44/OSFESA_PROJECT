@@ -1,5 +1,6 @@
 import FormularioLogin from "../components/FormularioLogin";
 import OSFESA from "../IMG/OSFESA.png";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
@@ -15,6 +16,13 @@ const Login = () => {
       <div className="flex justify-center">
         <FormularioLogin />
       </div>
+      <Link
+          to="/actualizarContraseña"
+          className=" text-center  font-bold text-md text-black align-middle block
+            mt-10 cursor-pointer uppercase  decoration-inherit"
+        >
+          Actualizar Contraseña
+        </Link>
     </>
   );
 };
