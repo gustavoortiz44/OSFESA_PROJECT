@@ -1,9 +1,8 @@
-import GenerarContrato from "../components/GenerarContrato"
 import { useEffect,useState} from "react";
 import { useNavigate,Link } from "react-router-dom";
-import { sweetAlertSesion } from "../../sweetalert2/Alerta";
+import { sweetAlertSesion,sweetAlerCLienteNoEncontrado } from "../../sweetalert2/Alerta";
 import OSFESA from "../IMG/OSFESA.png";
-import GeneralesTabla from "./GeneralesTabla";
+
 
 
 const Contrato = () => {
@@ -12,14 +11,14 @@ const Contrato = () => {
     apellidoPaterno: "",
   });
   const [dato, setDato] = useState({});
-
+  const [cantidadLotes, setCantidadLotes] = useState([]);
   const [apellidoMaterno, setApellidoMaterno] = useState("");
   const [cantidadTotal, setCantidadTotal] = useState("");
   const [cantidadPago, setCantidadPago] = useState("");
   const [numeroSemanas, setNumeroSemanas] = useState("");
   const [fecha, setFecha] = useState("");
 
-  const [cantidadLotes, setCantidadLotes] = useState([]);
+ 
   const [zona, setZona] = useState([]);
   const [manzana, setManzana] = useState([]);
   const [superficie, setSuperficie] = useState([]);
@@ -54,7 +53,7 @@ const Contrato = () => {
     localStorage.clear()
     navigate('/')
   }
-   /*const handleConsultar = () => {
+   const handleConsultar = () => {
     if (Object.values(usuario).includes("")) {
       return sweetAlerGenerarApartado();
     }
@@ -74,8 +73,8 @@ const Contrato = () => {
       .then((responseJson) => responseJson.json())
 
       .then((response) => {
-        setDatos(response);
-        console.log(datos);
+        setDato(response);
+        //console.log(datos);
       })
       .catch(() => {
         sweetAlerCLienteNoEncontrado();
@@ -105,73 +104,16 @@ const Contrato = () => {
 
       .then((response) => {
         setCantidadLotes(response);
-      });
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/obtenerZonaContrato.php`, {
-      method: "POST",
-      headers: {
-        "Accept":"application/json",
-        "Content-type":"application/json",
-      },
-      body: JSON.stringify({
-        nombre: usuario.nombre,
-        apellidoPaterno: usuario.apellidoPaterno,
-        apellidoMaterno: apellidoMaterno,
-      }),
-      //mode:"no-cors"
-    })
-      .then((responseJson) => responseJson.json())
-
-      .then((response) => {
-        setZona(response);
-       
-      });
-      
-      
-      fetch(`${import.meta.env.VITE_BACKEND_URL}/obtenerSuperficie.php`, {
-        method: "POST",
-        headers: {
-          "Accept":"application/json",
-          "Content-type":"application/json",
-        },
-        body: JSON.stringify({
-          nombre: usuario.nombre,
-          apellidoPaterno: usuario.apellidoPaterno,
-          apellidoMaterno: apellidoMaterno,
-        }),
-        //mode:"no-cors"
-      })
-        .then((responseJson) => responseJson.json())
   
-        .then((response) => {
-          setSuperficie(response);
-         
-        });
-        
-        
-        fetch(`${import.meta.env.VITE_BACKEND_URL}/obtenerManzanaContrato.php`, {
-          method: "POST",
-          headers: {
-            "Accept":"application/json",
-            "Content-type":"application/json",
-          },
-          body: JSON.stringify({
-            nombre: usuario.nombre,
-            apellidoPaterno: usuario.apellidoPaterno,
-            apellidoMaterno: apellidoMaterno,
-          }),
-          //mode:"no-cors"
-        })
-          .then((responseJson) => responseJson.json())
+      });
+      console.log(cantidadLotes)
+   
     
-          .then((response) => {
-            setManzana(response);
-           
-          });
           
-          setBoton(false)
-          setBotonCrear(true)
+          //setBoton(false)
+          //setBotonCrear(true)
         
-  };*/
+  };
   
  /* const handleCrearContrato=()=>{
     setBotonCrear(false)
@@ -222,7 +164,7 @@ const Contrato = () => {
         Contrato:
       </h1>  
       <form  className=" md:w-2/2"
-   // onSubmit={handleSubmit}
+   //onSubmit={handleSubmit}
   > 
     <div className="ml-4 mr-4 mb-3 p-3 float-left">
       <label
@@ -318,7 +260,7 @@ const Contrato = () => {
           <div className="float-left">
         {boton &&
          <button
-         //onClick={handleConsultar}
+         onClick={handleConsultar}
          type="button"
          className="bg-blue-500 text-center  font-bold text-lg rounded-md shadow-md text-white 
           p-2 mt-3 cursor-pointer hover:bg-blue-400 uppercase"
@@ -433,6 +375,76 @@ const Contrato = () => {
       </tbody>
     </table>
     </div>
+    <div className="flex justify-center mt-10">
+      <table className="bg-white px-10 py-10 rounded-lg shadow-lg ">
+          <thead className="text-xs text-gray-700 uppercase dark:text-gray-400">
+          <tr >
+          <th
+                scope="col"
+                className="py-2 px-3 text-md bg-blue-400 text-center text-white"
+              >
+                Lote:
+              </th>
+              <th
+                scope="col"
+                className="py-2 px-3 text-md bg-blue-400 text-center text-white"
+              >
+              Zona:
+              </th>
+              <th
+                scope="col"
+                className="py-2 px-3 text-md bg-blue-400 text-center text-white"
+              >
+                Manzana:
+              </th>
+              <th
+                scope="col"
+                className="py-2 px-3 text-md bg-blue-400 text-center text-white"
+              >
+                Superficie:
+              </th>
+          <th
+                scope="col"
+                className="py-2 px-3 text-md bg-blue-400 text-center text-white"
+              >
+                Colindancia_Norte:
+              </th>
+              <th
+                scope="col"
+                className="py-2 px-3 text-md bg-blue-400 text-center text-white"
+              >
+                Colindancia_Sur:
+              </th>
+              <th
+                scope="col"
+                className="py-2 px-3 text-md bg-blue-400 text-center text-white"
+              >
+                Colindancia_Oriente:
+              </th>
+              <th
+                scope="col"
+                className="py-2 px-3 text-md bg-blue-400 text-center text-white"
+              >
+                Colindancia_Poniente:
+              </th>
+          </tr>
+            </thead>
+            <tbody>
+            <tr className="border-2 ">
+             <td  className="border-2 text-center">{cantidadLotes.LOTE}</td>
+             <td  className="border-2 text-center">{cantidadLotes.ZONA}</td>
+             <td  className="border-2 text-center">{cantidadLotes.MANZANA}</td>
+             <td  className="border-2 text-center">{cantidadLotes.DIMENSION}</td>
+             <td  className="border-2 text-center">{cantidadLotes.COLINDANCIA_NORTE}</td>
+             <td  className="border-2 text-center">{cantidadLotes.COLINDANCIA_SUR}</td>
+             <td  className="border-2 text-center">{cantidadLotes.COLINDANCIA_ORIENTE}</td>
+             <td  className="border-2 text-center">{cantidadLotes.COLINDANCIA_PONIENTE}</td>
+             </tr>
+
+            </tbody>
+            </table>
+            </div>
+    
     </>
   );
 };

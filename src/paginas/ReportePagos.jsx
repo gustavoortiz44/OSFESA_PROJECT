@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import OSFESA from "../IMG/OSFESA.png";
 
 const ReportePagos= () => {
-  const navigate = useNavigate([]);
+  const navigate = useNavigate();
   const [datos, setDatos] = useState([]);
   useEffect(() => {
     const consultarApi = async () => {
