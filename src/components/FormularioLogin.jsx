@@ -18,46 +18,39 @@ const FormularioLogin = () => {
       return sweetAlertError();
     }
 
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/login.php`,{
-      method:"POST",
-      headers:{
-        "Accept":"application/json",
-        "Content-type":"application/json",
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/loginCHmod.php`, {    
+      method: "POST",
+      //mode: 'no-cors',
+      headers: {
+        Accept: 'application/json',
+        'Content-type': 'application/json',
       },
-      body:JSON.stringify({
-        userId:usuarioId,
-        password:passwordUser,
+      body: JSON.stringify({
+        userId: usuarioId,
+        password: passwordUser,
       }),
-     //mode:"no-cors"
-  
-      
+      //mode:"no-cors"
     })
-      
-    .then(responseJson=>responseJson.json())
-   
+      .then((responseJson) => responseJson.json())
       .then((response) => {
-        if (response.recepcion==='recepcion') {
-         
-      localStorage.setItem("nivel",response.recepcion)
-          localStorage.setItem("usuarioId",(usuarioId))
-    
-         navigate('/menu')
-          
-        }else if(response.direccion==='direccion'){
-          localStorage.setItem("nivel",response.direccion)
-          localStorage.setItem("usuarioId",(usuarioId))
-          
-         navigate('/menu')
-        
+        if (response.recepcion === "recepcion") {
+          localStorage.setItem("nivel", response.recepcion);
+          localStorage.setItem("usuarioId", usuarioId);
 
-        }else if(passwordUser!=password && usuarioId!=userId){
-         sweetAlerCLienteAutenticacion()
+          navigate("/menu");
+        } else if (response.direccion === "direccion") {
+          localStorage.setItem("nivel", response.direccion);
+          localStorage.setItem("usuarioId", usuarioId);
+
+          navigate("/menu");
+        } else if (passwordUser != password && usuarioId != userId) {
+          sweetAlerCLienteAutenticacion();
         }
-       
-           
-      }).catch((error) => {
+      })
+      .catch((error) => {
         console.log(error);
       });
+        
   };
 
   return (
@@ -71,7 +64,7 @@ const FormularioLogin = () => {
             htmlFor="userId"
             className="text-gray-700 uppercase font-bold text-center"
           >
-            Usuario:
+            UsuarioProduccion:
           </label>
           <input
             type="text"

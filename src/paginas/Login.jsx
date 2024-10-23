@@ -10,7 +10,7 @@ const Login = () => {
       </div>
 
       <h1 className="text-center font-medium text-3xl font-serif mt-0 p-0">
-        Iniciar Sesion
+        Iniciar Sesion2024-NoPRD
       </h1>
 
       <div className="flex justify-center">

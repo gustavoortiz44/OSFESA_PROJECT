@@ -48,7 +48,7 @@ const FormularioRecibo = () => {
       return sweetAlerId();
     }
 
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/crearRecibo.php`, {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/crearReciboCHmod.php`, {
       method: "POST",
       headers: {
        "Accept":"application/json",
@@ -64,7 +64,7 @@ const FormularioRecibo = () => {
       .then((response) => {
         setIdUsuario(response);
       });
-      fetch(`${import.meta.env.VITE_BACKEND_URL}/consultarLoteManzanaZona.php`, {
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/consultarLoteManzanaZonaCHmod.php`, {
         method: "POST",
         headers: {
           "Accept":"application/json",
@@ -407,7 +407,7 @@ const FormularioRecibo = () => {
             className="bg-blue-500 text-center  font-bold text-lg rounded-md shadow-md text-white 
              p-4 cursor-pointer hover:bg-blue-400 uppercase "
           >
-            Buscar Datos Cliente
+            Buscar Datos Cliente2
           </button>
           }
           {!usuario.ID_CLIENTE ? (
